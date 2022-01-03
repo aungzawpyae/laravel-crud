@@ -6,7 +6,7 @@ use App\Models\Product;
 use App\Models\ProductCollection;
 use Illuminate\Http\Request;
 use PhpParser\ErrorHandler\Collecting;
-
+use App\Http\Resources\CollectionResource;
 class ProductCollectionController extends Controller
 {
     /**
@@ -42,20 +42,22 @@ class ProductCollectionController extends Controller
      */
     public function store(Request $request)
     {
+       
         $request->validate([
             'name' =>'required',
             'product_id'=>'required',
-            
+
         ]);
         $product_id = json_encode($request->input('product_id'));
 
         $data = [
-            'name' =>$request->name,
-            'product_id'=>$product_id,
+            'name' =>$request->input('name'),
+            'product_id' => $product_id,
             'active'=>true,
         ];
-        // dd($data);
-        ProductCollection::create($data);
+
+        ProductCollection::create($data)->products()->sync($request->input('product_id'));
+  
         
         return redirect()->route('collection.index')->with('success', 'Product Collection Created Succefully!.');
     }
@@ -68,7 +70,13 @@ class ProductCollectionController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Product::with('productCollection')->find($id);
+
+            $data = ProductCollection::with('products')->find($id);
+
+        $collection =  new CollectionResource($data);
+
+        return view('collection.show')->with('collections', $collection);       
     }
 
     /**
@@ -93,21 +101,28 @@ class ProductCollectionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $collection = ProductCollection::find($id);
-        $request->validate([
-            'name' =>'nullable|required',
-            'product_id'=> 'nullable|required',
-        ]);
-        $product_id = json_encode($request->input('product_id'));
-        $data = [
-            'name'=>$request->name,
-            'product_id'=>$product_id,
-            'active'=>true,
-            
-        ];
+            $collection = ProductCollection::find($id);
+            $request->validate([
+                'name' =>'nullable|required',
+                'product_id'=> 'nullable|required',
+            ]);
+            $product_id = json_encode($request->input('product_id'));
+            $data = [
+                'name'=>$request->name,
+                'product_id'=>$product_id,
+                'active'=>true,
+                
+            ];
+
+            // dd($request->input('product_id'));
+
+     
+                $collection->update($data);
+                $collection->products()->sync($request->input('product_id'));
+    
 
         // dd($data);
-        $collection->update($data);
+        // $collection->update($data);
         return redirect()->route('collection.index')
                       ->with('success', 'Collection Updated Successfully!');
 

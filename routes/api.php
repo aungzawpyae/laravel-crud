@@ -22,8 +22,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('/products', ProductController::class);
-Route::post('/products/{id}', [ProductController::class, 'update']);
-Route::apiResource('/collection', CollectionController::class);
-Route::post('/collection/{id}', [CollectionController::class, 'update']);
+// Route::get('products', [ProductController::class, 'index']);
+// Route::apiResource('/products', ProductController::class);
+// Route::post('/products/{id}', [ProductController::class, 'update']);
+// Route::apiResource('/collection', CollectionController::class);
+// Route::post('/collection/{id}', [CollectionController::class, 'update']);
 

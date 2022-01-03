@@ -13,8 +13,21 @@ class ProductCollection extends Model
         'name','product_id','active'
     ];
 
-    public function product()
-        {
-        return $this->hasMany(Product::class);
-        }
+    public function products()
+    {
+        
+            return $this->belongsToMany(Product::class, 'product_with_collections');
+        
+    }
+
+    protected $casts = [
+            'active' => 'boolean',
+            // 'product_id' => 'json',
+    ];
+    
+
+    // public function getProductIdAttribute()
+    // {
+    //     return json_decode($this->$product);
+    // }
 }

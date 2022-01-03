@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Banner\CreateRequest;
 use App\Models\Banner;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class BannerController extends Controller
@@ -53,7 +54,7 @@ class BannerController extends Controller
            Banner::create($data);
 
            return redirect()->route('banners.index')
-                        ->with('success','Product created successfully.');
+                        ->with('success','Banner created successfully.');
        
 
     }
@@ -97,15 +98,16 @@ class BannerController extends Controller
             
         ]);
         if($request->file('image')){
-            $filename = time() . '.' . $request->image->extension();
-            $name = $request->file('image')->getClientOriginalName();
-            // Storage::delete($product->image);
+            // $filename = time() . '.' . $request->image->extension();
+            // $name = $request->file('image')->getClientOriginalName();
+            Storage::delete($banner->image);
             $banner_img = $request->file('image')->store('public/banner');
          }
+
         $data = [
             'name'=>$request->name,
             'active'=>true,
-            // 'image'=>$banner_img,
+            'image'=>$banner_img,
         
         ];
 
@@ -124,9 +126,9 @@ class BannerController extends Controller
     public function destroy($id)
     {
         $banner = Banner::find($id);
-
+        Storage::delete($banner->image);
         $banner->delete();
-        $banner->update();
+        
      return redirect()->route('banners.index')
                       ->with('success', 'Banner Deleted Successfully!');
     }

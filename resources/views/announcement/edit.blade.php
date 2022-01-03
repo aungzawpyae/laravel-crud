@@ -85,8 +85,6 @@
                                         selected
                                     @endif
                                 >
-
-                                    
                                   {{ $user['id'] }}
                                 </option>
                                 @endforeach

@@ -27,6 +27,7 @@ class UpdateRequest extends FormRequest
             'name' => 'nullable|required',
             'details' => 'nullable|required',
             'price' => 'nullable|required',
+            'category_id'=>'nullable|required',
             'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048'
         ];
     }
