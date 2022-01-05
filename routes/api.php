@@ -22,6 +22,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::namespace('Api')->group(function () {
+    /**
+    * Products
+    */
+
+    Route::get('products', [ProductController::class, 'index']);
+    Route::get('product/{id}', [ProductController::class, 'show']);
+});
+
 // Route::get('products', [ProductController::class, 'index']);
 // Route::apiResource('/products', ProductController::class);
 // Route::post('/products/{id}', [ProductController::class, 'update']);

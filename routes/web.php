@@ -1,5 +1,4 @@
 <?php
-namespace App;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AnnouncementController;

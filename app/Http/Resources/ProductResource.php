@@ -17,14 +17,15 @@ class ProductResource extends JsonResource
         // return parent::toArray($request);
 
         $data = [
-            'id'=>$this->id,
-            'name'=>$this->name,
-            'details'=>$this->details,
-            'price'=>$this->price,
-            'image'=>$this->image ? url('storage/'.$this->image):null,
-            'created_at'=>$this->created_at,
-            'updated_at'=>$this->updated_at,
-
+            'id'            => $this->id,
+            'name'          => $this->name,
+            'details'       => $this->details,
+            'price'         => $this->price,
+            'category_id'   => $this->category_id,
+            'image'         => $this->image ? url('storage/'.$this->image):null,
+            'category'      => $this->category,
+            'created_at'    => $this->created_at,
+            'updated_at'    => $this->updated_at,
         ];
 
         return $data;
