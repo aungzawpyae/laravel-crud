@@ -32,27 +32,30 @@ class ProductController extends Controller
         }
 
 
-    public function productAll(){
+    public function productAll()
+        {
 
            $product = Product::all();
             return ProductResource::collection($product);
         }
-        public function banner(){
+    public function banner()
+        {
         
             $product = Banner::all();
              return ProductResource::collection($product);
-         }
+        }
 
-         public function collection(){
+    public function collection()
+        {
             $product = Product::all();
             $banner = Banner::all();
             
         //    $collection = ProductCollection::orderBy('id' ,'desc') ->limit(3)->get();
            return ProductCollection::orderBy('id' ,'desc') ->limit(3)->get();
-         }
+        }
 
-         public function  collectionShow($id){
-
+    public function  collectionShow($id)
+        {
             $data = Product::with('productCollection')->find($id);
 
             $data = ProductCollection::with('products')->find($id);

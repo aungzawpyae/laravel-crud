@@ -54,7 +54,7 @@ class ProductController extends Controller
     //    dd($product);
        $filename = time() . '.' . $request->image->extension();
        $name = $request->file('image')->getClientOriginalName();
-       $product_img = $request->file('image')->store('public/products');
+       $product_img = $request->file('image')->store('products');
        
       
        Product::create([
