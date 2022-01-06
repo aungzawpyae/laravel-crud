@@ -3,8 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\Api\FontendController;
 use App\Http\Controllers\Api\ProductController;
-
 use App\Http\Controllers\Api\CollectionController;
 
 /*
@@ -23,17 +23,26 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::namespace('Api')->group(function () {
+   
+   
     /**
     * Products
     */
+    // Route::get('products', [ProductController::class, 'index']);
+    // Route::get('product/{id}', [ProductController::class, 'show']);
+ 
 
-    Route::get('products', [ProductController::class, 'index']);
-    Route::get('product/{id}', [ProductController::class, 'show']);
+    /** 
+     * Collection
+     **/
+
+    Route::get('collection', [FontendController::class, 'collection']);
+    Route::get('collection/show/{id}', [FontendController::class, 'collectionDetail']);
+
+    Route::get('banner',[FontendController::class, 'banner']);
+    Route::get('product',[FontendController::class, 'product']);
+
+ 
 });
 
-// Route::get('products', [ProductController::class, 'index']);
-// Route::apiResource('/products', ProductController::class);
-// Route::post('/products/{id}', [ProductController::class, 'update']);
-// Route::apiResource('/collection', CollectionController::class);
-// Route::post('/collection/{id}', [CollectionController::class, 'update']);
 
