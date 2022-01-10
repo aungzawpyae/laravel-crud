@@ -14,7 +14,6 @@ class CollectionResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
         $data = [
             'id'=>$this->id,
             'name'=>$this->name,
@@ -28,6 +27,8 @@ class CollectionResource extends JsonResource
         }
 
         if($request->has('default')){
+            // $data['products'] = ProductResource::collection($this->products()->orderBy('price', 'desc')->get());
+            
             $data['products'] = ProductResource::collection($this->products);
         }
         return $data;

@@ -43,27 +43,23 @@ class FontendController extends Controller
                                             ->with('$products', $product);  
       }
 
-    public function collectionShow(Request $request , $id)
-     {
-       $type = $request->type;
-       $default = $request->default;
-        $data = ProductCollection::whereHas('products' , function(Builder $query) use ($type, $default) {
-        //   if($type == "price_hight_to_low") {
-        //       return $query->where('price', 'asc');
-        //   }elseif($type == "price_low_to_hight") {
-        //     return $query->where('price', 'desc');
-        //     }elseif($type == "date_old_new") {
-        //       return $query->where('created_at', 'asc');
-        //   }elseif($type == "date_new_old") {
-        //     return $query->where('created_at', 'desc');
-        // }elseif($default) {
-          return $query->where('price', 'desc');
-        // }
-        })->find($id);
+    public function collectionShow(Request $request , $id) {
+        $type = $request->type;
+        $default = $request->default;
+        $data = ProductCollection::with(['products' => function($query) use ($type, $default) {
+          if($type == "price_hight_to_low") {
+              return $query->orderBy('price', 'asc');
+          }elseif($type == "price_low_to_hight") {
+            return $query->orderBy('price', 'desc');
+          }elseif($type == "date_old_new") {
+              return $query->orderBy('created_at', 'asc');
+          }elseif($type == "date_new_old") {
+            return $query->orderBy('created_at', 'desc');
+          }
+        }])->find($id);
         // $data = ProductCollection::with('products')->find($id);
-        return new CollectionResource($data);
-         
-      }
+        return new CollectionResource($data);         
+    }
 
     public function collectionddDetail(Request $request, $id)
 
