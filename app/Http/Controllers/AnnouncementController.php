@@ -51,7 +51,7 @@ class AnnouncementController extends Controller
             'name'=>$request->name,
             'desc'=>$request->desc,
             'is_new'=>true,
-            'creater_id'=>$request->creater_id,
+            'creater_id'=> auth()->user()->id
         ];
 
         // dd($data);

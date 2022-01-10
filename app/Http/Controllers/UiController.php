@@ -76,7 +76,7 @@ class UiController extends Controller
         public function productall()
         {
             $product = Product::latest()->paginate(5);
-            
+
             return view('ui.products',)->with('products', $product);
         }
 }

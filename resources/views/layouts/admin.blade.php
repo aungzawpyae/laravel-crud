@@ -216,6 +216,15 @@
                             Banner
                           </a>
                         </li>
+                        <li class="items-center">
+                          <a
+                            href="{{ route('announcement.index') }}"
+                            class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"
+                          >
+                            <i class="fas fa-table mr-2 text-sm text-blueGray-300"></i>
+                              Announcement
+                          </a>
+                        </li>
           
                         
                       </ul>
@@ -377,9 +386,9 @@
 
 // File Upload Image
 
-function uploadImage() {
-  document.getElementById("file-upload").createObjectURL = "Hello World";
-}
+      function uploadImage() {
+        document.getElementById("file-upload").createObjectURL = "Hello World";
+      }
       </script>
     </body>
 </html>

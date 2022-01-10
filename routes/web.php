@@ -10,20 +10,26 @@ use App\Http\Controllers\UiController;
 use App\Http\Controllers\AjaxRequestController;
 
 
+/**
+ * 
+ * Backend Controller 
+ * 
+ */
+Route::resource('/back/products', ProductController::class);
+// Route::get('product/test', [ProductController::class, 'index'])->name('products.index');
+Route::resource('/banners', BannerController::class);
+Route::resource('/collection', ProductCollectionController::class);
+Route::resource('/announcement', AnnouncementController::class);    
+Route::resource('/category', CategoryController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-// Route::get('/products/create', [App\Http\Controllers\ProductController::class, 'create']);
 
-Route::resource('/products', ProductController::class);
-Route::resource('/banners', BannerController::class);
-Route::resource('/collection', ProductCollectionController::class);
-Route::resource('/announcement', AnnouncementController::class);
-Route::resource('/category', CategoryController::class);
-
-
+Route::get('/test', function () {
+    return view('welcome');
+})->middleware(['auth'])->name('welcome');
 
 
 //   UI Route List

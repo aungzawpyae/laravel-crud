@@ -9,21 +9,23 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class ProductCollection extends Model
 {
     use HasFactory;
+
+    protected $table='product_collections';
+
     protected $fillable = [
-        'name','product_id','active'
+        'name','active','product_id'
+    ];
+    protected $casts = [
+        'active' => 'boolean',
+        // 'product_id' => 'json',
     ];
 
     public function products()
     {
-        
-            return $this->belongsToMany(Product::class, 'product_with_collections');
-        
+        return $this->belongsToMany(Product::class, ProductWithCollection::class, 'product_collection_id');
     }
 
-    protected $casts = [
-            'active' => 'boolean',
-            // 'product_id' => 'json',
-    ];
+   
     
 
     // public function getProductIdAttribute()

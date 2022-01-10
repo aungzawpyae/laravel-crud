@@ -10,16 +10,19 @@ class Announcement extends Model
 {
     use HasFactory;
 
+    const BACKEND = 'backend';
+    const WEBSITE = 'website';
+
     protected $fillable = [
-        'name','desc','is_new','creater_id'
+        'name','desc','is_new','creater_id','type'
     ];
 
     protected $casts = [
         'is_new' => 'boolean'
     ];
 
-    public function users()
+    public function creater()
         {
-        return $this->hasMany(Uses::class);
+        return $this->belongsTo(Uses::class, "creater_id");
         }
 }

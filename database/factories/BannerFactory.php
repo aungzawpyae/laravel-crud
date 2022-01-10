@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ProductFactory extends Factory
+class BannerFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -15,10 +15,9 @@ class ProductFactory extends Factory
     {
         return [
             'name'             => $this->faker->word(),
-            'details'           => $this->faker->sentence(),
-            'price'             =>$this->faker->randomNumber(6),
-            "image"          => "products/W3JQQ1Hf2N94CirtUJg0n4fbd1L8ihVh9EXvlkMa.jpg",
-            "category_id" => rand(1, 8),
+            'active'            =>true,
+            "image"          => "banner/XuaeyfMmeBYoB8ty0adfSNMqq3E8iDSbTJYj96a4.jpg",
+            "product_id" => rand(1, 10),
         ];
     }
 }

@@ -3,8 +3,8 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Facades\Storage;
-class BannerResource extends JsonResource
+
+class AnnouncementResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,10 +15,13 @@ class BannerResource extends JsonResource
     public function toArray($request)
     {
         $data = [
-            'id'            => $this->id,
+            'id'                    => $this->id,
             'name'          => $this->name,
-            'image'         => $this->image ? url(Storage::url($this->image)):null,
-            'created_at'    => $this->created_at,
+            'desc'             =>$this->desc,
+            'type'              => $this->type,
+            'is_new'       =>$this->is_new,
+            'creater_id'  =>$this->creater_id,
+            'created_at'    => $this->created_at->diffForHumans(),
             'updated_at'    => $this->updated_at,
         ];
 

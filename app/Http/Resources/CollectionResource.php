@@ -14,16 +14,22 @@ class CollectionResource extends JsonResource
      */
     public function toArray($request)
     {
+        return parent::toArray($request);
         $data = [
             'id'=>$this->id,
             'name'=>$this->name,
-            'product_id'=>$this->product_id,
-            'products'=> $this->products,
             'active'=>$this->active,
             'created_at'=>$this->created_at,
             'updated_at'=>$this->updated_at,
         ];
 
+        if($request->has('home')){
+            $data['products'] = ProductResource::collection($this->products->take(4));
+        }
+
+        if($request->has('default')){
+            $data['products'] = ProductResource::collection($this->products);
+        }
         return $data;
     }
 }

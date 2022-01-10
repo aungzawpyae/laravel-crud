@@ -1,5 +1,7 @@
 <?php
+namespace App;
 
+use App\Models\Announcement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BannerController;
@@ -24,23 +26,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::namespace('Api')->group(function () {
    
-   
-    /**
-    * Products
-    */
-    // Route::get('products', [ProductController::class, 'index']);
-    // Route::get('product/{id}', [ProductController::class, 'show']);
- 
-
     /** 
-     * Collection
+     * Font End 
      **/
 
     Route::get('collection', [FontendController::class, 'collection']);
-    Route::get('collection/show/{id}', [FontendController::class, 'collectionDetail']);
+    Route::get('collection/show/{id}', [FontendController::class, 'collectionShow']);
 
     Route::get('banner',[FontendController::class, 'banner']);
     Route::get('product',[FontendController::class, 'product']);
+    Route::get('test', [FontendController::class, 'test']);
+    Route::get('announcement', [FontendController::class, 'announcement']);
+    
 
  
 });

@@ -56,8 +56,8 @@ class ProductController extends Controller
 
     public function  collectionShow($id)
         {
-            $data = Product::with('productCollection')->find($id);
-
+            // $data = Product::with('productCollection')->find($id);
+            
             $data = ProductCollection::with('products')->find($id);
 
             return new CollectionResource($data);

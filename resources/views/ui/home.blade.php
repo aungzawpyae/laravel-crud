@@ -32,9 +32,6 @@
 
         </div>
         @foreach ($collections as $collection)
-
-            
-      
             <div class="container mx-auto computer">
                 <div class="flex justify-between mx-3 my-8">
                     <h2 class=" xl:text-3xl">
@@ -61,32 +58,32 @@
                 </div>
                 <div class="flex flex-wrap ">
                         @foreach ($collection->products  as $product)
-                        <div class="w-full p-4 sm:w-1/2 md:w-1/2 xl:w-1/4">
-                            <a href="" class="block overflow-hidden bg-white rounded-lg shadow-md h-80 hover:shadow-xl hover:border">
-                                <div class="relative z-0 overflow-hidden">
-                                    <img class="inset-0 object-contain w-full transition duration-700 ease-in-out absoslute h-44 hover:scale-110" src="{{ Storage::url($product->image) }}" alt="">
-                                </div>
-                            
-                            
-                            
-                                <div class="p-4">
-                                    <div class="flex items-center justify-between text-sm text-gray-600 ">
-                    
-                            
-                                </div>
-                                <h2 class="mt-2 mb-2 font-bold">
-                                    {{ $product->name}}
-                                </h2>
-                            
-                                <div class="flex items-center mt-3">
-                                    <span class="font-bold text-pink-600 text-x">Ks  {{ $product->price }}</span>
-                                </div>
-                                </div>
-                    
+                            <div class="w-full p-4 sm:w-1/2 md:w-1/2 xl:w-1/4">
+                                <a href="" class="block overflow-hidden bg-white rounded-lg shadow-md h-80 hover:shadow-xl hover:border">
+                                    <div class="relative z-0 overflow-hidden">
+                                        <img class="inset-0 object-contain w-full transition duration-700 ease-in-out absoslute h-44 hover:scale-110" src="{{ Storage::url($product['image']) }}" alt="">
+                                    </div>
+                                
+                                
+                                
+                                    <div class="p-4">
+                                        <div class="flex items-center justify-between text-sm text-gray-600 ">
+                        
+                                
+                                    </div>
+                                    <h2 class="mt-2 mb-2 font-bold">
+                                        {{ $product['name']}}
+                                    </h2>
+                                
+                                    <div class="flex items-center mt-3">
+                                        <span class="font-bold text-pink-600 text-x">Ks  {{ $product['price'] }}</span>
+                                    </div>
+                                    </div>
                         
                             
-                            </a>
-                        </div> 
+                                
+                                </a>
+                            </div> 
                         @endforeach
                         
                  
