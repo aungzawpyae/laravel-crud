@@ -27,8 +27,6 @@ class CollectionResource extends JsonResource
         }
 
         if($request->has('default')){
-            // $data['products'] = ProductResource::collection($this->products()->orderBy('price', 'desc')->get());
-            
             $data['products'] = ProductResource::collection($this->products);
         }
         return $data;
