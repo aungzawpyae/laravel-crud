@@ -83,7 +83,7 @@
                                           <div class="relative inline text-gray-700">
                                               <input type="hidden" name="collection_id" id="collection_id" value="{{ $collections->id }}">
                                               <select  class="h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline"
-                                                        onclick="filters()"
+                                                        onchange="filters()"
                                                         name="filter" 
                                                         id="filter"
                                                >
