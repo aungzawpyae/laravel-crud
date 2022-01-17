@@ -1,116 +1,88 @@
-<x-app-layout>
+@extends('layouts.app')
 
-    <div>
-        <div class="max-w-2xl  py-3">
-            <div >
-                <h6>
-                    Announcement Update !
-                </h6>
-            </div>
-            <div>
-            
-            </div>
-            @if ($errors->any())
-              
-              @foreach ($errors->all() as $error)
-                      <div class="flex flex-col my-3">
-                        <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-green-800" role="alert">
-                      <span class="font-medium">
-                          {{$error}}
-                      </span> 
-                    </div>
-                    </div>
-              @endforeach
-               
-            @endif
+@section('content')
+<main class="h-full pb-16 overflow-y-auto">
+  <div class="container px-6 mx-auto grid">
+    <h2
+      class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
+       >
+
+    </h2>
+    <!-- CTA -->
+      <div
+        class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple"
+      
+        >
+        <div class="flex items-center">
+          <span>Announcement Create</span>
         </div>
-        <div class="md:grid md:grid-cols-3 md:gap-6 ">
-          <div class="mt-5 md:mt-0 md:col-span-2 ">
-            <form action="{{ route('announcement.update',$announcement->id) }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                @method('PUT')
-              <div class="shadow sm:rounded-md sm:overflow-hidden">
-                <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
-                  <div class="grid grid-cols-3 gap-6">
-                    <div class="col-span-6 sm:col-span-3">
-                        <label for="first-name" class="block text-sm font-medium text-gray-700">Name :</label>
-                        <input type="text" name="name" value="{{$announcement->name}}" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                    </div>
-                  </div>
-                  <div class="grid grid-cols-3 gap-6">
-                    <div class="col-span-6 sm:col-span-3">
-                      
-                      <div>
-                        <label for="about" class="block text-sm font-medium text-gray-700">
-                          Description :
-                        </label>
-                        <div class="mt-1">
-                          <textarea id="about" value="{{$announcement->desc}}" name="desc" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" >
-                            {{$announcement->desc}} 
-                        </textarea>
-                        </div>
-                        <p class="mt-2 text-sm text-gray-500">
-                          Announcement 
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="grid grid-cols-3 gap-6">
-                    <div class="col-span-6 sm:col-span-3">
-                        <label for="first-name" class="block text-sm font-medium text-gray-700">Product ID :</label>
-                        <div class="flex justify-center">
-                            <div class="mb-3 xl:w-96">
-                              <select 
-                              name="creater_id"
-                            
-                              class="form-select appearance-none
-                              
-                                block
-                                w-full
-                                px-3
-                                py-1.5
-                                text-base
-                                font-normal
-                                text-gray-700
-                                bg-white bg-clip-padding bg-no-repeat
-                                border border-solid border-gray-300
-                                rounded
-                                transition
-                                ease-in-out
-                                m-0
-                                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"  aria-label="multiple select example">
-                                @foreach($users as $user)
-                                <option value="{{ $user['id'] }}"
-                                     @if ($user->id == $announcement->creater_id)
-                                        selected
-                                    @endif
-                                >
-                                  {{ $user['id'] }}
-                                </option>
-                                @endforeach
-                                
-                              </select>
-                            </div>
-                          </div>
-                    </div>
-                  </div>
-                
-    
-                
-     
-                </div>
-                <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                  <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    Update
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
+        <span>
+          <a href="{{ route('announcement.index') }}">
+            Back &LeftArrow;
+          </a>
+        </span>
       </div>
-      
 
-      
-    </x-app-layout>
+      @if ($errors->any())
+              
+      @foreach ($errors->all() as $error)
+              <div class="flex flex-col my-3">
+                <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-green-800" role="alert">
+              <span class="font-medium">
+                  {{$error}}
+              </span> 
+            </div>
+            </div>
+      @endforeach
+       
+    @endif
+    <div
+        class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
+        >
+        <form action="{{ route('announcement.update', $announcement->id) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+          <label class="block text-sm">
+            <span class="text-gray-700 dark:text-gray-400">Name</span>
+            <input
+              class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+              placeholder="Product Name :"
+              type="text"
+              name="name"
+              value="{{ $announcement->name }}"
+            />
+          </label>
+          <label class="block mt-4 text-sm mb-4">
+            <span class="text-gray-700 dark:text-gray-400">Description</span>
+            <textarea
+              class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+              rows="3"
+              type="message"
+              name="desc"
+              placeholder="Enter some long form content."
+              value="{{ $announcement->desc }}"
+             >
+                  {{ $announcement->desc }}
+              </textarea>
+          </label>
+          {{-- <input type="hidden" name="creater_id" value="{{Auth::user()->id}}"> --}}
+          <div class="flex justify-end ">
     
+            <button
+                type="submit"
+                class=" p-3   text-sm font-semibold  text-purple-100 bg-purple-600 hover:bg-purple-500 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple"
+                >
+                
+                  Update
+            </button>
+        </div>
+        </form>
+     
+
+    </div>
+
+   
+
+
+
+</main>
+@endsection

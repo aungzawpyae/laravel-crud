@@ -23,49 +23,49 @@
             <div id="root">
                 <nav 
   
-                  class="md:left-0 md:block md:fixed md:top-0 md:bottom-0 bg-color text-white md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6"
+                  class="relative z-10 flex flex-wrap items-center justify-between px-6 py-4 text-white shadow-xl md:left-0 md:block md:fixed md:top-0 md:bottom-0 bg-color md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden md:w-64"
                 >
                   <div
-                    class="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto"
+                    class="flex flex-wrap items-center justify-between w-full px-0 mx-auto md:flex-col md:items-stretch md:min-h-full md:flex-nowrap"
                   >
                     <button
-                      class="cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent"
+                      class="px-3 py-1 text-xl leading-none text-black bg-transparent border border-transparent border-solid rounded opacity-50 cursor-pointer md:hidden"
                       type="button"
                       onclick="toggleNavbar('example-collapse-sidebar')"
                     >
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                       </svg>
                     </button>
                     <a
-                      class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
+                      class="inline-block p-4 px-0 mr-0 text-sm font-bold text-left uppercase md:block md:pb-2 text-blueGray-600 whitespace-nowrap"
                       href="l"
                     >
-                      Admin Panel
+                      Ecommerce
                     </a>
-                    <ul class="md:hidden items-center flex flex-wrap list-none">
-                      <li class="inline-block relative">
+                    <ul class="flex flex-wrap items-center list-none md:hidden">
+                      <li class="relative inline-block">
                         <a
-                          class="text-blueGray-500 block py-1 px-3"
+                          class="block px-3 py-1 text-blueGray-500"
                           href="#pablo"
                           onclick="openDropdown(event,'notification-dropdown')"
                           ><i class="fas fa-bell"></i
                         ></a>
                         <div
-                          class="hidden bg-black text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
+                          class="z-50 hidden float-left py-2 text-base text-left list-none bg-black rounded shadow-lg min-w-48"
                           id="notification-dropdown"
                         >
                           <a
                             href="#pablo"
-                            class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+                            class="block w-full px-4 py-2 text-sm font-normal bg-transparent whitespace-nowrap text-blueGray-700"
                             >Action</a
                           ><a
                             href="#pablo"
-                            class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+                            class="block w-full px-4 py-2 text-sm font-normal bg-transparent whitespace-nowrap text-blueGray-700"
                             >Another action</a
                           ><a
                             href="#pablo"
-                            class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+                            class="block w-full px-4 py-2 text-sm font-normal bg-transparent whitespace-nowrap text-blueGray-700"
                             >Something else here</a
                           >
                           <div
@@ -73,40 +73,40 @@
                           ></div>
                           <a
                             href="#pablo"
-                            class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+                            class="block w-full px-4 py-2 text-sm font-normal bg-transparent whitespace-nowrap text-blueGray-700"
                             >Seprated link</a
                           >
                         </div>
                       </li>
-                      <li class="inline-block relative">
+                      <li class="relative inline-block">
                         <a
-                          class="text-blueGray-500 block"
+                          class="block text-blueGray-500"
                           href="#pablo"
                           onclick="openDropdown(event,'user-responsive-dropdown')"
-                          ><div class="items-center flex">
+                          ><div class="flex items-center">
                             <span
-                              class="w-12 h-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full"
+                              class="inline-flex items-center justify-center w-12 h-12 text-sm text-white rounded-full bg-blueGray-200"
                               ><img
                                 alt="..."
-                                class="w-full rounded-full align-middle border-none shadow-lg"
+                                class="w-full align-middle border-none rounded-full shadow-lg"
                                 src="../../assets/img/team-1-800x800.jpg"
                             /></span></div
                         ></a>
                         <div
-                          class="hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
+                          class="z-50 hidden float-left py-2 text-base text-left list-none bg-white rounded shadow-lg min-w-48"
                           id="user-responsive-dropdown"
                         >
                           <a
                             href="#pablo"
-                            class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+                            class="block w-full px-4 py-2 text-sm font-normal bg-transparent whitespace-nowrap text-blueGray-700"
                             >Action ss</a
                           ><a
                             href="#pablo"
-                            class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+                            class="block w-full px-4 py-2 text-sm font-normal bg-transparent whitespace-nowrap text-blueGray-700"
                             >Another action</a
                           ><a
                             href="#pablo"
-                            class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+                            class="block w-full px-4 py-2 text-sm font-normal bg-transparent whitespace-nowrap text-blueGray-700"
                             >Something else here</a
                           >
                           <div
@@ -114,32 +114,32 @@
                           ></div>
                           <a
                             href="#pablo"
-                            class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+                            class="block w-full px-4 py-2 text-sm font-normal bg-transparent whitespace-nowrap text-blueGray-700"
                             >Seprated link</a
                           >
                         </div>
                       </li>
                     </ul>
                     <div
-                      class="md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:mt-4 md:shadow-none shadow absolute top-0 left-0 right-0 z-40 overflow-y-auto overflow-x-hidden h-auto items-center flex-1 rounded hidden"
+                      class="absolute top-0 left-0 right-0 z-40 items-center flex-1 hidden h-auto overflow-x-hidden overflow-y-auto rounded shadow md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:mt-4 md:shadow-none"
                       id="example-collapse-sidebar"
                     >
                       <div
-                        class="md:min-w-full md:hidden block pb-4 mb-4 border-b border-solid border-blueGray-200"
+                        class="block pb-4 mb-4 border-b border-solid md:min-w-full md:hidden border-blueGray-200"
                       >
                         <div class="flex flex-wrap">
                           <div class="w-6/12">
                             <a
-                              class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
+                              class="inline-block p-4 px-0 mr-0 text-sm font-bold text-left uppercase md:block md:pb-2 text-blueGray-600 whitespace-nowrap"
                               href=""
                             >
                               Admin Panel
                             </a>
                           </div>
-                          <div class="w-6/12 flex justify-end">
+                          <div class="flex justify-end w-6/12">
                             <button
                               type="button"
-                              class="cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent"
+                              class="px-3 py-1 text-xl leading-none text-black bg-transparent border border-transparent border-solid rounded opacity-50 cursor-pointer md:hidden"
                               onclick="toggleNavbar('example-collapse-sidebar')"
                             >
                               <i class="fas fa-times"></i>
@@ -148,12 +148,12 @@
                         </div>
                       </div>
                       <form class="mt-6 mb-4 md:hidden">
-                        <div class="mb-3 pt-0">
+                        <div class="pt-0 mb-3">
                             
                           <input
                             type="text"
                             placeholder="Search"
-                            class="border-0 px-3 py-2 h-12 border border-solid border-blueGray-500 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-base leading-snug shadow-none outline-none focus:outline-none w-full font-normal"
+                            class="w-full h-12 px-3 py-2 text-base font-normal leading-snug bg-white border-0 border-solid rounded shadow-none outline-none border-blueGray-500 placeholder-blueGray-300 text-blueGray-600 focus:outline-none"
                           />
                         </div>
                       </form>
@@ -161,67 +161,74 @@
                       <hr class="my-4 md:min-w-full" />
                       <!-- Heading -->
                       <h6
-                        class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
+                        class="block pt-1 pb-4 text-xs font-bold no-underline uppercase md:min-w-full text-blueGray-500"
                       >
                         Admin Layout Pages
                       </h6>
                       <!-- Navigation -->
           
-                      <ul class="md:flex-col md:min-w-full flex flex-col list-none">
+                      <ul class="flex flex-col list-none md:flex-col md:min-w-full">
                         <li class="items-center">
                           <a
                             href=""
                             id="changeColor"
-                            class="text-xs uppercase py-3 font-bold block"
+                            class="block py-3 text-xs font-bold uppercase"
                           >
-                            <i class="fas fa-tv mr-2 text-sm opacity-75"></i>
+                            <i class="mr-2 text-sm opacity-75 fas fa-tv"></i>
                             Dashboard
                           </a>
                         </li>
-          
+                        @auth
+                          
+                        @if (auth()->user()->role < 0)
                         <li class="items-center">
                           <a
-                            href="{{ route('products.index') }}"
-                            class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"
+                            href="{{ route('product.index') }}"
+                            class="block py-3 text-xs font-bold uppercase text-blueGray-700 hover:text-blueGray-500"
                           >
-                            <i class="fas fa-tools mr-2 text-sm text-blueGray-300"></i>
+                            <i class="mr-2 text-sm fas fa-tools text-blueGray-300"></i>
                             Product
                           </a>
                         </li>
+                            
+                        @endif
+                        @endauth
                         <li class="items-center">
                           <a
                             href="{{ route('category.index') }}"
-                            class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"
+                            class="block py-3 text-xs font-bold uppercase text-blueGray-700 hover:text-blueGray-500"
                           >
-                            <i class="fas fa-tools mr-2 text-sm text-blueGray-300"></i>
+                            <i class="mr-2 text-sm fas fa-tools text-blueGray-300"></i>
                             Category
                           </a>
                         </li>
-          
+                        @auth
+                          <li class="items-center">
+                            <a
+                              href="{{ route('collection.index') }}"
+                              class="block py-3 text-xs font-bold uppercase text-blueGray-700 hover:text-blueGray-500"
+                            >
+                              <i class="mr-2 text-sm fas fa-table text-blueGray-300"></i>
+                              Collection
+                            </a>
+                          </li>
+                          
+                        @endauth
                         <li class="items-center">
                           <a
-                            href="{{ route('collection.index') }}"
-                            class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"
+                            href="{{ route('banner.index') }}"
+                            class="block py-3 text-xs font-bold uppercase text-blueGray-700 hover:text-blueGray-500"
                           >
-                            <i class="fas fa-table mr-2 text-sm text-blueGray-300"></i>
-                            Collection
-                          </a>
-                        </li>
-                        <li class="items-center">
-                          <a
-                            href="{{ route('banners.index') }}"
-                            class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"
-                          >
-                            <i class="fas fa-table mr-2 text-sm text-blueGray-300"></i>
+                            <i class="mr-2 text-sm fas fa-table text-blueGray-300"></i>
                             Banner
-                          </a>
+                            </a>
                         </li>
                         <li class="items-center">
                           <a
                             href="{{ route('announcement.index') }}"
-                            class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500"
+                            class="block py-3 text-xs font-bold uppercase text-blueGray-700 hover:text-blueGray-500"
                           >
-                            <i class="fas fa-table mr-2 text-sm text-blueGray-300"></i>
+                            <i class="mr-2 text-sm fas fa-table text-blueGray-300"></i>
                               Announcement
                           </a>
                         </li>
@@ -232,40 +239,46 @@
                       <!-- Divider -->
                       <hr class="my-4 md:min-w-full" />
                       <!-- Heading -->
-                      {{-- <h6
-                        class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline"
+                      <h6
+                        class="block pt-1 pb-4 text-xs font-bold no-underline uppercase md:min-w-full text-blueGray-500"
                       >
                         Auth Layout Pages
-                      </h6> --}}
+                      </h6>
                       <!-- Navigation -->
-{{--           
+          
                       <ul
-                        class="md:flex-col md:min-w-full flex flex-col list-none md:mb-4"
+                        class="flex flex-col list-none md:flex-col md:min-w-full md:mb-4"
                       >
                         <li class="items-center">
                           <a
-                            href="../auth/login.html"
-                            class="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+                            href="/user-list"
+                            class="block py-3 text-xs font-bold uppercase text-blueGray-700 hover:text-blueGray-500"
                           >
                             <i
-                              class="fas fa-fingerprint text-blueGray-300 mr-2 text-sm"
+                              class="mr-2 text-sm fas fa-fingerprint text-blueGray-300"
                             ></i>
-                            Login
+                            User List
                           </a>
                         </li>
-          
                         <li class="items-center">
                           <a
-                            href="../auth/register.html"
-                            class="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
+                            href="{{ route('logout') }}"
+                            class="block py-3 text-xs font-bold uppercase text-blueGray-700 hover:text-blueGray-500"
+                          onclick="event.preventDefault();document.getElementById('logout-form').submit();
+                          
+                          "
                           >
                             <i
-                              class="fas fa-clipboard-list text-blueGray-300 mr-2 text-sm"
+                              class="mr-2 text-sm fas fa-fingerprint text-blueGray-300"
                             ></i>
-                            Register
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST"  style="display: none" >
+                              @csrf
+                            </form>
+                            Log Out
                           </a>
                         </li>
-                      </ul> --}}
+                        
+                      </ul>
           
         
                       
@@ -357,11 +370,11 @@
   			},
 
 // <div 
-//   					class="justify-center text-center text-sm text-gray-600"
+//   					class="justify-center text-sm text-center text-gray-600"
 //   				>
 //                     <label 
 //                     	for="file-upload" 
-//                     	class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500"
+//                     	class="relative font-medium text-indigo-600 bg-white rounded-md cursor-pointer hover:text-indigo-500"
 //                     >
 // 						<button 
                       		
@@ -379,7 +392,7 @@
                       		
 //                       	/>
 //                     </label><br>
-//                     <p class="text-xs text-gray-500 mt-3">
+//                     <p class="mt-3 text-xs text-gray-500">
 //         				PNG, JPG, GIF up to 10MB
 //       				</p>
 //   </div>

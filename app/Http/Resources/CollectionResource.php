@@ -15,19 +15,19 @@ class CollectionResource extends JsonResource
     public function toArray($request)
     {
         $data = [
-            'id'=>$this->id,
-            'name'=>$this->name,
-            'active'=>$this->active,
-            'created_at'=>$this->created_at,
-            'updated_at'=>$this->updated_at,
+            'id' => $this->id,
+            'name' => $this->name,
+            'active' => $this->active,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
 
-        if($request->has('home')){
+        if ($request->has('home')) {
             $data['products'] = ProductResource::collection($this->products->take(4));
         }
 
-        if($request->has('default')){
-            $data['products'] = ProductResource::collection($this->products);
+        if ($request->has('default')) {
+            $data['products'] = ProductResource::collection($this->products->panginate(8));
         }
         return $data;
     }

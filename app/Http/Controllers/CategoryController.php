@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CategoryResource;
+use App\Http\Resources\ProductResource;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -16,7 +18,9 @@ class CategoryController extends Controller
     public function index()
     {
         $category = Category::latest()->paginate(10);
-    
+        // $categorys = CategoryResource::collection($category);
+        // dd($categorys);
+
         return view('category.index')->with('categories',$category);
     }
 
@@ -95,26 +99,29 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
         $request->validate([
-            'name' => 'nullable|required',
-            'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048'
-            
+            'name' => 'required',
+          
         ]);
+  
+        $data = $request->all();
         if($request->file('image')){
             $filename = time() . '.' . $request->image->extension();
             $name = $request->file('image')->getClientOriginalName();
             Storage::delete($category->image);
-            $category_img = $request->file('image')->store('public/category');
+            $category_img = $request->file('image')->store('/public/category');
+            
          }
          
         $data = [
             'name'=>$request->name,
-            // 'image'=>$request->category_img,
+            'image'=>$category_img,
         
         ];
+    
 
         $category->update($data);
      return redirect()->route('category.index')
-                      ->with('success', 'Category Updated Successfull!');
+                      ->with('success', 'Category Updated Successfully!');
     }
 
     /**

@@ -5,7 +5,7 @@
          >
          <div class="w-full h-full text-white bg-black opacity-50 mt-20">
             <div class="max-w-3xl mx-auto text-center ">
-              <h1 class="pt-10 mb-3 text-5xl font-bold " >Category All</h1>
+              <h1 class="pt-10 mb-3 text-5xl font-bold " >Product All</h1>
               <div class="flex justify-center ">
                 <a href="/" class="font-bold hover:text-red-800 text-1xl">
                   Home
@@ -30,7 +30,7 @@
     <div class="flex flex-wrap ">
       @foreach ($products  as $product)
       <div class="w-full p-4 sm:w-1/2 md:w-1/2 xl:w-1/4">
-          <a href="" class="block overflow-hidden bg-white rounded-lg shadow-md h-80 hover:shadow-xl hover:border">
+          <a href="{{url("/product/details/{$product->id}")}}" class="block overflow-hidden bg-white rounded-lg shadow-md h-80 hover:shadow-xl hover:border">
               <div class="relative z-0 overflow-hidden">
                   <img class="inset-0 object-contain w-full transition duration-700 ease-in-out absoslute h-44 hover:scale-110" src="{{ Storage::url($product->image) }}" alt="">
               </div>
@@ -50,6 +50,8 @@
                   <span class="font-bold text-pink-600 text-x">Ks  {{ $product->price }}</span>
               </div>
               </div>
+              
+          
   
       
           
@@ -57,8 +59,9 @@
       </div> 
       @endforeach
       
-      {{ $products->links() }}
+     
   
 </div>
+{{ $products->links() }}
   </div>
 </x-guest-layout>

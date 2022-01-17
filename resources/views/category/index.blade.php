@@ -1,169 +1,158 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 
 @section('content')
-<div class="relative md:ml-64 bg-blueGray-50">
-    <nav
-    
-      class="absolute border-b top-0 left-0 w-full z-10 bg-transparent md:flex-row md:flex-nowrap md:justify-start flex items-center p-4"
-    >
-      <div
-        class="w-full  mx-autp items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 px-4"
-      >
+<main class="h-full pb-16 overflow-y-auto">
+         
+          @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                    <div class="flex flex-col my-3">
+                      <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-green-800" role="alert">
+                    <span class="font-medium">
+                        {{$error}}
+                    </span> 
+                  </div>
+                  </div>
+            @endforeach      
+          @endif
+    <div class="container grid px-6 mx-auto">
+
+        <div class="flex justify-end">
+            <h2
+                class=" p-3 my-8  text-sm font-semibold  text-purple-100 bg-purple-600  rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple"
+                >
+                <a href="/category/create" class="flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                    </svg>
+                        Add 
+                </a>
+            </h2>
+        </div>
+      <!-- CTA -->
         <a
-          class=" text-sm uppercase hidden lg:inline-block font-semibold"
-          href=""
-          >Category </a
-        >
-        <form
-          class="md:flex hidden flex-row flex-wrap  items-center lg:ml-auto mr-3"
-        >
-          <div class="relative flex w-full flex-wrap items-stretch">
-            
-            <span
-              class="z-10 h-full leading-snug font-normal   text-center text-blueGray-300 absolute bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3 "
-              >
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-            </span>
-            <input
-              type="text"
-              placeholder="Search here..."
-              class="border rounded-full px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative   text-sm shadow outline-none focus:outline-none focus:ring w-full pl-10"
-            />
-          </div>
-        </form>
-        <ul
-          class="flex-col md:flex-row list-none items-center hidden md:flex"
-        >
-          <a
-            class="text-blueGray-500 block"
-            href="#pablo"
-            onclick="openDropdown(event,'user-dropdown')"
-          >
-            <div class="items-center flex">
-              <span
-                class="w-12 h-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full"
-                ><img
-                  alt="..."
-                  class="w-full rounded-full align-middle border-none shadow-lg"
-                  src="{{asset('3.jpg')}}"
-              /></span>
-            </div>
-          </a>
-          <div
-            class="hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
-            id="user-dropdown"
-          >
-            <a
-              href="#pablo"
-              class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-              >Action</a
-            ><a
-              href="#pablo"
-              class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-              >Another action</a
-            ><a
-              href="#pablo"
-              class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-              >Something else here</a
-            >
-            <div
-              class="h-0 my-2 border border-solid border-blueGray-100"
-            ></div>
-            <a
-              href="#pablo"
-              class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-              >Seprated link</a
-            >
-          </div>
-        </ul>
-      </div>
-    </nav>
-    <!-- Header -->
-    <div class="relative  md:pt-32 pb-32 pt-12">
-      <div class="px-4 md:px-10 mx-auto w-full">
-        <div class=" flex justify-between">
-          <div>Category List</div>
-          <a href="{{route('category.create')}}">
-          <div class="  p-3 btn-grad"> 
-           
-              Create
-            
-          </div>
+          class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple"
+         href="https://github.com/estevanmaito/windmill-dashboard"
+         >
+        
+         <span>Category List</span>
         </a>
-        </div>
-        @if ($message = Session::get('success'))
-        <div class="flex-1 my-3">
-          <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
-        <span class="font-medium">
-            {{$message}}
-        </span> 
-      </div>
-      </div>
-  @endif
-        <div>
-          <!-- This example requires Tailwind CSS v2.0+ -->
-        <div class="flex flex-col">
-          <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-              <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                <table class="min-w-full divide-y divide-gray-200">
-                  <thead class="table-grad">
-                    <tr>
-                      <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Image
-                      </th>
-                      <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Name
-                      </th>
-                    
-                      <th scope="col" class="relative px-6 py-3">
-                        <span class="sr-only">Edit</span>
-                      
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody class="">
-                    @foreach ($categories as $category)
-                    <tr class="border ">
-                      <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="flex items-center">
-                          <div class="flex-shrink-0 h-10 w-10">
-                            <img class="h-10 w-10 rounded-full" src="{{ Storage::url($category->image) }}" alt="">
-                          </div>
-                        
-                        </div>
-                      </td>
-                      <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-900">{{ $category->name}}</div>
-                      
-                      </td>
-                      
-                      <td class=" px-1 py-4 whitespace-nowrap text-right text-sm font-medium flex">
-                        <a href="{{route('category.show',$category->id)}}" class="pr-5 text-green-600 hover:text-green-900">Show</a>
-                        <a href="{{route('category.edit',$category->id)}}" class="pr-5 text-indigo-600 hover:text-indigo-900">Edit</a>
-                        <form action="{{route('category.destroy',$category->id)}}" method="post">
-                          @csrf
-                          @method('DELETE')   
-                          <button href="#" class="text-red-600 hover:text-red-900">Delete</button>
-                      </form>
-                      </td>
-                    </tr>
-                    @endforeach
-                    
-
-                    <!-- More people... -->
-                  </tbody>
-                </table>
+            {{-- Succcess Alert  --}}
+          @if ($message = Session::get('success'))
+                <div class="flex-1 my-3">
+                  <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
+                <span class="font-medium">
+                    {{$message}}
+                </span> 
               </div>
-            </div>
-          </div>
-        </div>
+              </div>
+          @endif
+      <div class="w-full overflow-hidden rounded-lg shadow-xs">
+        <div class="w-full overflow-x-auto">
+
+          <table class="w-full whitespace-no-wrap">
+            <thead>
+              <tr
+                class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
+              >
+                <th class="px-4 py-3">Photo</th>
+                <th class="px-4 py-3">Name</th>
+           
+                <th class="px-4 py-3">Actions</th>
+              </tr>
+            </thead>
+            <tbody
+              class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
+            >
+              @foreach ($categories as $category)
+              <tr class="text-gray-700 dark:text-gray-400">
+                <td class="px-4 py-3">
+                  <div class="flex items-center text-sm">
+                    <!-- Avatar with inset shadow -->
+                    <div
+                      class="relative hidden w-8 h-8 mr-3 rounded-full md:block"
+                    >
+                      <img
+                        class="object-cover w-full h-full rounded-full"
+                        src="{{ Storage::url($category->image) }}"
+                        alt=""
+                        loading="lazy"
+                      />
+                      <div
+                        class="absolute inset-0 rounded-full shadow-inner"
+                        aria-hidden="true"
+                      ></div>
+                    </div>
+               
+                  </div>
+                </td>
+                <td class="px-4 py-3 text-sm">
+                  {{ $category->name}}
+                </td>
+               
+  
+                <td class="px-4 py-3">
+                  <div class="flex items-center space-x-4 text-sm">
+                    <a
+                    class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-green-600 rounded-lg hover:bg-green-800 dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                    aria-label="Show"
+                    href="{{ route('category.show', $category->id) }}"
+                  >
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                    <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
+                  </svg>
+                  </a>
+                    <a
+                      class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                      aria-label="Edit"
+                      href="{{route('category.edit',$category->id)}}"
+                    >
+                      <svg
+                        class="w-5 h-5" 
+                        aria-hidden="true"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"
+                        ></path>
+                      </svg>
+                    </a>
+                    <form action="{{route('category.destroy',$category->id)}}" method="post">
+                      @csrf
+                      @method('DELETE')   
+                      <button
+                      class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-red-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                      aria-label="Delete"
+                    >
+                   </form>
+                  
+                      <svg
+                        class="w-5 h-5"
+                        aria-hidden="true"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                          clip-rule="evenodd"
+                        ></path>
+                      </svg>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              @endforeach
+              
+
+              
+            </tbody>
+          </table>
 
         </div>
+        
       </div>
     </div>
-    
-  </div>
+  </main>
 @endsection

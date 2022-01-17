@@ -137,6 +137,12 @@
                                                 <img class="h-10 w-10 rounded-full" src="{{ Storage::url($product->image) }}" alt="">
                                                 </div>
                                         </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm ">
+                                          <div class="flex-shrink-0 h-10 w-10">
+                                            <a href="/invoice" class="bg-cyan-500 shadow-lg shadow-cyan-500/50 "  id="printView"   >Print View</a>
+                                            
+                                            </div>
+                                      </td>
                                        
                                     </tr>
                                      

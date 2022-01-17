@@ -29,6 +29,13 @@
 
     </head>
     <body>
+        <button onclick="topFunction()" id="myBtn" title="Go to top">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+          </svg>
+        </button>
+
+
         <div class="font-sans antialiased text-gray-900 ">
 
             @include('ui.navigation-menu')
@@ -39,17 +46,32 @@
             @include('ui.footer')
 
            
-
+            @yield('js')
         </div>
 
         <script type="text/javascript" src="{{asset('js/custom.js')}}"></script>
+ 
         <script>
-            // let value = document.querySelector('#filter option:checked');
+             // ScrollTop Function
+ var mybutton = document.getElementById("myBtn");
 
-            // console.log(value);
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
 
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+     
         </script>
-
-        
     </body>
 </html>

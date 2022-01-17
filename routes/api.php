@@ -29,12 +29,15 @@ Route::namespace('Api')->group(function () {
     /** 
      * Font End 
      **/
+    Route::get('home',[FontendController::class,'home']);
 
     Route::get('collection', [FontendController::class, 'collection']);
     Route::get('collection/show/{id}', [FontendController::class, 'collectionShow']);
 
     Route::get('banner',[FontendController::class, 'banner']);
+
     Route::get('product',[FontendController::class, 'product']);
+    
     Route::get('test', [FontendController::class, 'test']);
     Route::get('announcement', [FontendController::class, 'announcement']);
     

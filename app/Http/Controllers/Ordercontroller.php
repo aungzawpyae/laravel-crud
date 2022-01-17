@@ -2,9 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Models\Category;
+use App\Http\Resources\CollectionResource;
+use App\Models\Banner;
+use App\Models\Cart;
+use App\Models\Product;
+use App\Models\ProductCollection;
 use Illuminate\Http\Request;
 
-class ApiCollectionController extends Controller
+class Ordercontroller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -32,10 +39,13 @@ class ApiCollectionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
+         public function store(Request $request){
+      
+            
+            
+        }   
+    
+
 
     /**
      * Display the specified resource.
@@ -81,4 +91,10 @@ class ApiCollectionController extends Controller
     {
         //
     }
+
+    public function orderSuccess(){
+
+        // return "hello";
+    }
+
 }

@@ -58,4 +58,14 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function admin(){
+        return $this->role === 1;
+    }
+
+    public function celler(){
+        return $this->role ===2;
+    }
+ 
+   
 }

@@ -55,6 +55,7 @@ class ProductCollectionController extends Controller
             'product_id' => $product_id,
             'active'=>true,
         ];
+        
 
         ProductCollection::create($data)->products()->sync($request->input('product_id'));
   
@@ -107,6 +108,7 @@ class ProductCollectionController extends Controller
                 'product_id'=> 'nullable|required',
             ]);
             $product_id = json_encode($request->input('product_id'));
+
             $data = [
                 'name'=>$request->name,
                 'product_id'=>$product_id,
@@ -114,15 +116,9 @@ class ProductCollectionController extends Controller
                 
             ];
 
-            // dd($request->input('product_id'));
-
-     
                 $collection->update($data);
                 $collection->products()->sync($request->input('product_id'));
     
-
-        // dd($data);
-        // $collection->update($data);
         return redirect()->route('collection.index')
                       ->with('success', 'Collection Updated Successfully!');
 

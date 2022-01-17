@@ -34,7 +34,7 @@ class FontendController extends Controller
      }
 
     public function uicollection()
-      {
+      {litakemit
         $product = Product::all();
         
        $collection = ProductCollection::orderBy('id' ,'desc') ->get();
@@ -46,7 +46,7 @@ class FontendController extends Controller
     public function collectionShow(Request $request , $id) {
         $type = $request->type;
         $default = $request->default;
-        $data = ProductCollection::with(['products' => function($query) use ($type, $default) {
+        $data = ProductCollection::with(['products' => function($query) use ($type) {
           if($type == "price_hight_to_low") {
               return $query->orderBy('price', 'asc');
           }elseif($type == "price_low_to_hight") {
@@ -93,19 +93,21 @@ class FontendController extends Controller
 
       public function  product(Request $request)
       {
-        $name = $request->input('name');
-        $category_id = $request->input('category_id');
-        $perPage = $request->input('perPage');
+        // $name = $request->input('name');
+        // $category_id = $request->input('category_id');
+        // $perPage = $request->input('perPage');
 
-        $products = Product::when($name, function($q) use($name){
-                        $q->where('name', 'ilike', '%'.$name.'%');
-                    })
-                    ->when($category_id, function($q) use($category_id){
-                        $q->where('category_id', $category_id);
-                    })
-                    ->latest()
-                    ->paginate($perPage);
-
+        // $products = Product::when($name, function($q) use($name){
+        //                 $q->where('name', 'ilike', '%'.$name.'%');
+        //             })
+        //             ->when($category_id, function($q) use($category_id){
+        //                 $q->where('category_id', $category_id);
+        //             })
+        //             ->latest()
+        //             ->paginate($perPage);
+          $products = Product::latest()->paginate(8);
+        
+  
 
         return ProductResource::collection($products);
         return response()->json([
@@ -123,7 +125,7 @@ class FontendController extends Controller
       {
          $banner = Banner::all();
           $product = Product::all();
-           return ProductResource::collection($product, $banner);
+           return \App\Http\Resources\ProductResource::collection($product, $banner);
       }
       public function announcement(Request $request)
       {

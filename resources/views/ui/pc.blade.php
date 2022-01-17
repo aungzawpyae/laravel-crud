@@ -95,22 +95,7 @@
                                             
                                         </h6>
                                     </div>
-                                    <div class="col-1 ">
-                                    
-                                            {{-- <span class="">Sort By : </span>
-                                            <div class="inline text-gray-700 ">
-                                                
-                                                <select class="h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline" placeholder="Regular input">
-                                                    <option>Price, hight to low</option>
-                                                    <option>Price, low to hight</option>
-                                                    <option>Date, old to new</option>
-                                                    <option>Date, new to old</option>
-                                                </select>
-                                                
-                                             </div> --}}
-                                        
-        
-                                    </div>
+            
                                 </div>
                             </div>
         
@@ -118,7 +103,7 @@
                         <div class="flex flex-wrap my-5">
                             @foreach ($products  as $product)
                                     <div class="p-4 l sm:w-1/2 md:w-1/2 xl:w-1/4">
-                                        <a href="" class="block overflow-hidden bg-white rounded-lg shadow-md h-80 hover:shadow-xl hover:border">
+                                        <a href="{{url("/product/details/{$product->id}")}}" class="block overflow-hidden bg-white rounded-lg shadow-md h-80 hover:shadow-xl hover:border">
                                             <div class="relative z-50 overflow-hidden">
                                                 <img class="inset-0 object-contain w-full transition duration-700 ease-in-out absoslute h-44 hover:scale-110" src="{{ Storage::url($product->image) }}" alt="">
                                             </div>
@@ -144,11 +129,12 @@
                                         </a>
                                     </div>
                             @endforeach
-                            
+                            <br>
+                           
                             
                         </div>
                         
-                    
+                        {{ $products->links() }}
                                 
                         
                             </div>

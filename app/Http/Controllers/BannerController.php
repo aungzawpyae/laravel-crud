@@ -17,7 +17,7 @@ class BannerController extends Controller
     public function index()
     {
         $banners = Banner::orderBy('id','desc')->get();
-        return view('banners.index')->with('banners',$banners);
+        return view('banner.index')->with('banners',$banners);
     }
 
     /**
@@ -27,7 +27,7 @@ class BannerController extends Controller
      */
     public function create()
     {
-        return view('banners.create');
+        return view('banner.create');
     }
 
     /**
@@ -53,7 +53,7 @@ class BannerController extends Controller
 
            Banner::create($data);
 
-           return redirect()->route('banners.index')
+           return redirect()->route('banner.index')
                         ->with('success','Banner created successfully.');
        
 
@@ -79,7 +79,7 @@ class BannerController extends Controller
     public function edit($id)
     {
         $banner = Banner::find($id);
-        return view('banners.edit')->with('banner',$banner);
+        return view('banner.edit')->with('banner',$banner);
     }
 
     /**
@@ -112,7 +112,7 @@ class BannerController extends Controller
         ];
 
         $banner->update($data);
-     return redirect()->route('banners.index')
+     return redirect()->route('banner.index')
                       ->with('success', 'Banner Updated Successfully!');
         
     }
@@ -129,7 +129,7 @@ class BannerController extends Controller
         Storage::delete($banner->image);
         $banner->delete();
         
-     return redirect()->route('banners.index')
+     return redirect()->route('banner.index')
                       ->with('success', 'Banner Deleted Successfully!');
     }
 }

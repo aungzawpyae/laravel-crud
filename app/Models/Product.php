@@ -21,5 +21,10 @@ class Product extends Model
     {
         return $this->belongsToMany(ProductCollection::class, 'product_with_collections');
     }
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
     
 }

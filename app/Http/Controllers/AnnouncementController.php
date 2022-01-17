@@ -18,8 +18,7 @@ class AnnouncementController extends Controller
     {
         $announcements = Announcement::latest()->paginate(5);
     
-        return view('announcement.index',compact('announcements'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('announcement.index',compact('announcements'))->with('user', User::all());
     }
 
     /**

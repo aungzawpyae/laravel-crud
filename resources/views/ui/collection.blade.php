@@ -25,9 +25,11 @@
        </h6>
     </div>
   </div>
+  @dd($collections)
     <div class="py-12 bg-gray-100">
         <div class="grid grid-cols-1 gap-5 p-10 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
             @foreach ($collections as $collection)
+            {{-- @dd($collection) --}}
               <div class="overflow-hidden rounded shadow-lg">
                 <img class="w-full " src="{{ Storage::url($collection->name) }}" alt="Mountain">
                 <div class="px-6 py-4">
@@ -47,6 +49,9 @@
               </div>
 
             @endforeach
+
+            <br>
+            {{ $products->links() }}
         </div>
 
           
