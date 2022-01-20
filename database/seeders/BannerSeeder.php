@@ -14,6 +14,20 @@ class BannerSeeder extends Seeder
      */
     public function run()
     {
-        Banner::factory(10)->create();
+        $banners = [
+            'banner/b_1.jpg',
+            'banner/b_2.jpg',
+            'banner/b_3.jpg',
+            'banner/b_4.jpg',
+           ];
+
+           foreach ($banners as $key => $banner) {
+            Banner::create([
+                'name'  => 'Banner'.$key,
+                'image'  => $banner,
+                'active'    => true,
+               ]);
+           }
+       
     }
 }

@@ -18,10 +18,10 @@
 
         <div class="flex justify-end">
             <h2
-                class=" p-3 my-8  text-sm font-semibold  text-purple-100 bg-purple-600  rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple"
+                class="p-3 my-8 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple"
                 >
-                <a href="{{ route('category.create') }}" class="flex">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <a href="{{ route('order.create') }}" class="flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                     </svg>
                         Add 
@@ -34,7 +34,7 @@
          href="https://github.com/estevanmaito/windmill-dashboard"
          >
         
-         <span>Category List</span>
+         <span>Order List</span>
         </a>
             {{-- Succcess Alert  --}}
           @if ($message = Session::get('success'))
@@ -54,58 +54,62 @@
               <tr
                 class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
               >
-                <th class="px-4 py-3">Photo</th>
+                <th class="px-4 py-3">Index</th>
                 <th class="px-4 py-3">Name</th>
-           
-                <th class="px-4 py-3">Actions</th>
+                <th class="px-4 py-3">Status</th>
+               
+
               </tr>
             </thead>
             <tbody
               class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
             >
-              @foreach ($categories as $category)
+              @foreach ($orders as $order)
               <tr class="text-gray-700 dark:text-gray-400">
-                <td class="px-4 py-3">
-                  <div class="flex items-center text-sm">
-                    <!-- Avatar with inset shadow -->
-                    <div
-                      class="relative hidden w-8 h-8 mr-3 rounded-full md:block"
-                    >
-                      <img
-                        class="object-cover w-full h-full rounded-full"
-                        src="{{ Storage::url($category->image) }}"
-                        alt=""
-                        loading="lazy"
-                      />
-                      <div
-                        class="absolute inset-0 rounded-full shadow-inner"
-                        aria-hidden="true"
-                      ></div>
-                    </div>
-               
-                  </div>
+                
+                <td class="px-4 py-3 text-sm">
+                  {{ $order->id}}
                 </td>
                 <td class="px-4 py-3 text-sm">
-                  {{ $category->name}}
+                  {{ $order->user->name}}
                 </td>
-               
-  
+                
+                
+                <td class="px-4 py-3 text-sm">
+                 
+                  @if(!$order->status == 1)
+                    <span
+                    class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full dark:text-white dark:bg-orange-600"
+                    
+                    >
+                      Pending
+                    </span>    
+                    @else
+                    <span
+                    class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
+                    >
+                      Success
+                    </span>
+                  @endif
+
+                
+                </td>
                 <td class="px-4 py-3">
                   <div class="flex items-center space-x-4 text-sm">
-                    {{-- <a
+                    <a
                     class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-green-600 rounded-lg hover:bg-green-800 dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                     aria-label="Show"
-                    href="{{ route('category.show', $category->id) }}"
+                    href=""
                   >
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
                     <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
                   </svg>
-                  </a> --}}
+                  </a>
                     <a
                       class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                       aria-label="Edit"
-                      href="{{route('category.edit',$category->id)}}"
+                      href="{{ route('order.edit',$order->id)}}"
                     >
                       <svg
                         class="w-5 h-5" 
@@ -118,7 +122,7 @@
                         ></path>
                       </svg>
                     </a>
-                    <form action="{{route('category.destroy',$category->id)}}" method="post">
+                    <form action="" method="post">
                       @csrf
                       @method('DELETE')   
                       <button
@@ -144,11 +148,14 @@
                 </td>
               </tr>
               @endforeach
+              
+
+              
             </tbody>
           </table>
 
         </div>
-        
+       
       </div>
     </div>
   </main>

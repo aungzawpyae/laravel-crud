@@ -25,6 +25,11 @@ class ProductCollection extends Model
         return $this->belongsToMany(Product::class, ProductWithCollection::class, 'product_collection_id');
     }
 
+    public function productLimits()
+    {
+        return $this->belongsToMany(Product::class, ProductWithCollection::class, 'product_collection_id')->limit(4);
+    }
+   
    
     
 

@@ -19,9 +19,8 @@ class ProductController extends Controller
     {
         $products = Product::with(['category'])
                         ->latest()
-                        ->paginate();
-        return view('product.index',compact('products'))
-          ->with('i', (request()->input('page', 1) - 1) * 5);
+                        ->paginate(15);
+        return view('product.index',compact('products'));
     }
 
     /**

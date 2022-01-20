@@ -16,72 +16,94 @@ use PhpParser\ErrorHandler\Collecting;
 class UiController extends Controller
 {
     public function home()
-
+         /**
+         * 
+         *  Home Page Show Data
+         *
+         **/
         {
-            $product = Product::all();
-            $banner = Banner::all();
-            // $collection =  ProductCollection::orderBy('id' ,'desc') ->get();
-            $announcements= Announcement::all();
-            // $announcement = AnnouncementResource::where('type',  $request->type  )->get();
-           $collection = ProductCollection::orderBy('id' ,'desc') ->take(5)->get();
-   
-             return view('ui.home')->with('collections', $collection)
-                                                ->with('$products', $product)
-                                                ->with('announcements', $announcements)
-                                                ->with('banners', $banner); 
-        }
+            $banners = Banner::where('active', 1)->get();
 
-        public function productCollection()
+            $announcements= Announcement::all();
+            
+            $collections = ProductCollection::orderBy('id' ,'desc')->take(3)->get();
+
+            return view('ui.home', compact('banners','collections','announcements'));
+          
+         }
+
+
+    public function collection()
+          /**
+         * 
+         *  Collection List 
+         *
+         **/
         {
             $product = Product::latest()->paginate(15);
-            
-           $collection = ProductCollection::orderBy('id','desc')->get();
-   
-
-        //  dd($product);
-             return view('ui.pc')->with('collections', $collection)
-                                            ->with('products', $product);      
+                
+            $collection = ProductCollection::orderBy('id','desc')->get();
+    
+            return view('ui.pc')->with('collections', $collection)
+                                                ->with('products', $product);      
                                                 
             
         }
 
-        public function collectionShow($id)
+    public function collectionShow($id)
+        /**
+         * 
+         *  Collection Deatils with product
+         *
+         **/
         {
-                $data = Product::with('productCollection')->find($id);
+            $data = Product::with('productCollection')->find($id);
 
-                $data = ProductCollection::with('products')->find($id);
-
-               $collection =  new CollectionResource($data);
-
-              return view('ui.collection-details')->with('collections', $collection);      
+            $data = ProductCollection::with('products')->find($id);
+            // dd($data);
+            $collection =  new CollectionResource($data);
+            // dd($collection);
+            return view('ui.collection-details')->with('collections', $collection);      
         }
 
-        public function productall()
+    public function productall()
         {
-            $product = Product::latest()->paginate(5);
-
+            $product = Product::latest()->paginate(16);
+            
             return view('ui.products',)->with('products', $product);
         }
 
-        public function productDetails($id){
+    public function productDetails($id)
+        {
             $products = Product::find($id);
             return view('ui.product-details',compact('products'));
         }
-        // Cart Store
-        public function store(Request $request)
+        /**
+        * 
+        *  Home Page Show Data
+        *
+        **/
+    public function store(Request $request)
         {  
-            $qty = $request->quantity;
-            $price = $request->price;
-            $total = $qty * $price;
-           $data = Cart::create([
-                'product_id'=>$request->product_id,
-                'user_id'=>$request->user_id,
-                'quantity'=>$request->quantity,
-                'price'     =>$request->price,
-                'slug'      =>$total,
-            ]);
-            
-        return redirect('/cart')->with('success','Added cart successfully.');
+            $oldCart = Cart::where('user_id', $request->user_id)->where('product_id', $request->product_id)->latest()->first();
+
+                if ($oldCart) {
+                    $oldCart->quantity += $request->quantity;
+                    $oldCart->save();
+                } else {
+                    $qty = $request->quantity;
+                    $price = $request->price;
+                    $total = $qty * $price;
+                $data = Cart::create([
+                        'product_id'=>$request->product_id,
+                        'user_id'=>$request->user_id,
+                        'quantity'=>$request->quantity,
+                        'price'     =>$request->price,
+                        'slug'      =>$total,
+                    ]);
+                }
+                
+            return redirect('/cart')->with('success','Added cart successfully.');
         }
         public function about()
         {

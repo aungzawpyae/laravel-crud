@@ -5,7 +5,7 @@
                 <div class="w-full h-48 bg-fixed"
                   style="background-image: url(https://cdn.pixabay.com/photo/2017/03/13/17/26/ecommerce-2140604_960_720.jpg)"
                      >
-                     <div class="w-full h-full text-white bg-black opacity-50 mt-20">
+                     <div class="w-full h-full mt-20 text-white bg-black opacity-50">
                         <div class="max-w-3xl mx-auto text-center ">
                           <h1 class="pt-10 mb-3 text-5xl font-bold " >Add To Cart List</h1>
                           <div class="flex justify-center ">
@@ -14,7 +14,7 @@
                             </a>
                             
                             <span class="text-red-500" >
-                              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4  mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                               </svg>
                             </span>
@@ -29,8 +29,8 @@
                 </div>
               </div>
 
-              <div class="flex flex-row">
-                <div class="basis-1/2">
+              <div class="flex ">
+                <div class="flex-1">
                   <div class="container p-8 mx-auto mt-12 bg-white">
                     <div class="w-full overflow-x-auto">
                       {{-- Succcess Alert  --}}
@@ -46,7 +46,7 @@
                       <div class="my-2">
                         <h3 class="text-xl font-bold tracking-wider">
                           Shopping Cart 
-                           {{$count}}
+                           {{$carts->count()}}
                           item(s)
                         </h3>
                       </div>
@@ -65,26 +65,33 @@
                               $total = 0;
                             @endphp
                               @foreach ($carts as $cart)
-                                @if (Auth::user()->id === $cart->user->id)
+                                {{-- @if (Auth::user()->id === $cart->user->id) --}}
                                 <tr>
                                   
                                   <td class="p-4 px-6 text-center whitespace-nowrap">{{ $cart->product->name }}</td>
                                   <td class="p-4 px-6 text-center whitespace-nowrap">
                                         
-                                      <div>
-                                        <button class="px-2 py-0 shadow bg-gray-300" id=""  onclick="decrease({{ $cart->id }})">-</button>
-                                  
-                                      <input 
-                                          type="text"
-                                          disabled
-                                          id="quantity_{{ $cart->id }}"
-                                          name="quantity"  
-                                          value="{{ $cart->quantity }}"
-                                          class="w-12 text-center bg-gray-100 outline-none quantity"
-                                          >
+                                      <div class="flex">
+                                       
                                   
                                       
-                                        <button class="px-2 py-0 shadow bg-gray-300" onclick="increase({{ $cart->id }})">+</button>
+                                        <form action="{{ route('cart.update',$cart->id) }}" method="post">
+                                            @csrf
+                                            @method('PUT')   
+                                            <button class="px-2 py-0 bg-gray-300 shadow" onclick="decrease({{ $cart->id }})">-</button>
+                                            <input 
+
+                                              type="number"
+                                              id="quantity_{{ $cart->id }}"
+                                              name="quantity"  
+                                              value="{{ $cart->quantity }}"
+                                              class="w-16 bg-gray-100 outline-none quantity"
+                                              min="1"
+                                            >
+                                            <button class="px-2 py-0 bg-gray-300 shadow" onclick="increase({{ $cart->id }})">+</button>
+                                            
+                                        </form>
+                                      
                                         
                                         
                                       </div>
@@ -92,8 +99,8 @@
                                     
                                   </td>
                                  
-                                  <td class="p-4 px-6 text-center whitespace-nowrap">{{ $cart->product->price }}</td>
-                                  <input type="text" id="price" value="{{ $cart->product->price }}">
+                                  <td class="p-4 px-6 text-center whitespace-nowrap" id="price_{{ $cart->id}}">{{ $cart->product->price }}</td>
+                                  
                             
                                   <td class="p-4 px-6 text-center whitespace-nowrap">
                                      
@@ -103,16 +110,16 @@
                                     <button  class="px-2 py-0 text-red-100 bg-red-600 rounded"  >
                                     x
                                     </button>
-                                </form>
+                                  </form>
                                   
                                   </td>
                                 </tr>
                                 @php
                                 $total  +=  $cart->price * $cart->quantity ;
                                 
-                              @endphp 
+                                @endphp 
                             
-                                @endif
+                                {{-- @endif --}}
                               @endforeach
                           
                           @endauth
@@ -121,44 +128,27 @@
                       </table>
                    
                       
-                      <div class="flex justify-end md:mt-10 space-x-2">
+                      <div class="flex justify-end space-x-2 md:mt-10">
                        <div>
-                         <h4 class="flex">Total Price : <div class="text-indiog-600 text-lg font-extrabold flex ml-5"> {{$total}} MMK (or) $</div></h4>
+                         <h4 class="flex">Total Price : <div class="flex ml-5 text-lg font-extrabold text-indiog-600"> {{$total}} MMK (or) $</div></h4>
                        
                         
                        </div>
                        <div>
-                        {{-- <form action="{{ route('order.store') }}" method="POST" enctype="multipart/form-data">
-                              @csrf
-                              <input type="hidden" name="user_id"  value="{{ Auth::user()->id }}">
-                              <input type="hidden" name="amount"  value="{{ $total}}">
-
-                              <a
-                              class="
-                                px-6
-                                py-3
-                                text-sm text-gray-800
-                                bg-gray-200
-                                hover:bg-gray-400
-                              "
-                              href="/"
-                            >
-                              Cannel
-                            </a>
-                            <button
-                              class="
-                                px-6
-                                py-3
-                                text-sm text-white
-                                bg-indigo-500
-                                hover:bg-indigo-600
-                              "
-                              type="submit"
-                            >
-                              Order
-                            </button>
-                      
-                       </form> --}}
+                        <a
+                        class="px-6 py-3 text-sm text-gray-800 bg-gray-200 hover:bg-gray-400"
+                        href="/"
+                      >
+                        Cannel
+                      </a>
+                      <a 
+                        href="{{ route('order.create') }}"
+                        class="px-6 py-3 text-sm text-white bg-indigo-500 hover:bg-indigo-600"
+                        type="submit"
+                      >
+                        Continue to Shipping
+                      </a>
+                       
                        
                        </div>
                       </div>
@@ -169,16 +159,16 @@
                 {{-- <div class="basis-1/2">
                   <div class="bg-gray-300">
                     <div class="">
-                        <div class="max-w-md  bg-white shadow-lg rounded-lg md:max-w-xl mx-2">
+                        <div class="max-w-md mx-2 bg-white rounded-lg shadow-lg md:max-w-xl">
                             <div class="md:flex ">
                                 <div class="w-full p-4 px-5 py-5">
                                    
-                                    <div class="flex flex-row pt-2 text-xs pt-6 pb-5"> <span class="font-bold">Information</span> <small class="text-gray-400 ml-1">></small> <span class="text-gray-400 ml-1">Shopping</span> <small class="text-gray-400 ml-1">></small> <span class="text-gray-400 ml-1">Payment</span> </div> <span>Customer Information</span>
+                                    <div class="flex flex-row pt-2 pt-6 pb-5 text-xs"> <span class="font-bold">Information</span> <small class="ml-1 text-gray-400">></small> <span class="ml-1 text-gray-400">Shopping</span> <small class="ml-1 text-gray-400">></small> <span class="ml-1 text-gray-400">Payment</span> </div> <span>Customer Information</span>
                                     <div class="relative pb-5"> 
-                                      <input type="text" name="mail" class="border rounded h-10 w-full focus:outline-none focus:border-green-200 px-2 mt-2 text-sm" placeholder="E-mail"> <span class="absolute text-blue-500 right-2 top-4 font-medium text-sm">Log out</span> </div> <span>Shipping Address</span>
-                                    <div class="grid md:grid-cols-2 md:gap-2"> <input type="text" name="mail" class="border rounded h-10 w-full focus:outline-none focus:border-green-200 px-2 mt-2 text-sm" placeholder="First name*"> <input type="text" name="mail" class="border rounded h-10 w-full focus:outline-none focus:border-green-200 px-2 mt-2 text-sm" placeholder="Last name*"> </div> <input type="text" name="mail" class="border rounded h-10 w-full focus:outline-none focus:border-green-200 px-2 mt-2 text-sm" placeholder="Company (optional)"> <input type="text" name="mail" class="border rounded h-10 w-full focus:outline-none focus:border-green-200 px-2 mt-2 text-sm" placeholder="Address*"> <input type="text" name="mail" class="border rounded h-10 w-full focus:outline-none focus:border-green-200 px-2 mt-2 text-sm" placeholder="Apartment, suite, etc. (optional)">
-                                    <div class="grid md:grid-cols-3 md:gap-2"> <input type="text" name="mail" class="border rounded h-10 w-full focus:outline-none focus:border-green-200 px-2 mt-2 text-sm" placeholder="Zipcode*"> <input type="text" name="mail" class="border rounded h-10 w-full focus:outline-none focus:border-green-200 px-2 mt-2 text-sm" placeholder="City*"> <input type="text" name="mail" class="border rounded h-10 w-full focus:outline-none focus:border-green-200 px-2 mt-2 text-sm" placeholder="State*"> </div> <input type="text" name="mail" class="border rounded h-10 w-full focus:outline-none focus:border-green-200 px-2 mt-2 text-sm" placeholder="Country*"> <input type="text" name="mail" class="border rounded h-10 w-full focus:outline-none focus:border-green-200 px-2 mt-2 text-sm" placeholder="Phone Number*">
-                                    <div class="flex justify-between items-center pt-2"> <button type="button" class="h-12 w-24 text-blue-500 text-xs font-medium">Return to cart</button> <button type="button" class="h-12 w-48 rounded font-medium text-xs bg-blue-500 text-white">Continue to Shipping</button> </div>
+                                      <input type="text" name="mail" class="w-full h-10 px-2 mt-2 text-sm border rounded focus:outline-none focus:border-green-200" placeholder="E-mail"> <span class="absolute text-sm font-medium text-blue-500 right-2 top-4">Log out</span> </div> <span>Shipping Address</span>
+                                    <div class="grid md:grid-cols-2 md:gap-2"> <input type="text" name="mail" class="w-full h-10 px-2 mt-2 text-sm border rounded focus:outline-none focus:border-green-200" placeholder="First name*"> <input type="text" name="mail" class="w-full h-10 px-2 mt-2 text-sm border rounded focus:outline-none focus:border-green-200" placeholder="Last name*"> </div> <input type="text" name="mail" class="w-full h-10 px-2 mt-2 text-sm border rounded focus:outline-none focus:border-green-200" placeholder="Company (optional)"> <input type="text" name="mail" class="w-full h-10 px-2 mt-2 text-sm border rounded focus:outline-none focus:border-green-200" placeholder="Address*"> <input type="text" name="mail" class="w-full h-10 px-2 mt-2 text-sm border rounded focus:outline-none focus:border-green-200" placeholder="Apartment, suite, etc. (optional)">
+                                    <div class="grid md:grid-cols-3 md:gap-2"> <input type="text" name="mail" class="w-full h-10 px-2 mt-2 text-sm border rounded focus:outline-none focus:border-green-200" placeholder="Zipcode*"> <input type="text" name="mail" class="w-full h-10 px-2 mt-2 text-sm border rounded focus:outline-none focus:border-green-200" placeholder="City*"> <input type="text" name="mail" class="w-full h-10 px-2 mt-2 text-sm border rounded focus:outline-none focus:border-green-200" placeholder="State*"> </div> <input type="text" name="mail" class="w-full h-10 px-2 mt-2 text-sm border rounded focus:outline-none focus:border-green-200" placeholder="Country*"> <input type="text" name="mail" class="w-full h-10 px-2 mt-2 text-sm border rounded focus:outline-none focus:border-green-200" placeholder="Phone Number*">
+                                    <div class="flex items-center justify-between pt-2"> <button type="button" class="w-24 h-12 text-xs font-medium text-blue-500">Return to cart</button> <button type="button" class="w-48 h-12 text-xs font-medium text-white bg-blue-500 rounded">Continue to Shipping</button> </div>
                                 </div>
                             </div>
                         </div>
@@ -188,7 +178,7 @@
                 
               </div>
 
-            <div class="max-w-2xl mx-auto  ">
+            <div class="max-w-2xl mx-auto ">
                 
             </div>
           </div>

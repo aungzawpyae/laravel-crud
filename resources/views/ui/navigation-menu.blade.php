@@ -44,7 +44,7 @@
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
             <a href="/" class="px-3 py-2 text-sm rounded-md     hover:bg-gray-700 hover:text-white" aria-current="page" x-bind:class="{ 'text-gray-300': !atTop }">Home</a>
 
-            <a href="/product-collection" class="px-3 py-2 text-sm font-medium  rounded-md hover:bg-gray-700 hover:text-white" x-bind:class="{ 'text-gray-300': !atTop }">Collection</a>
+            <a href="/collection" class="px-3 py-2 text-sm font-medium  rounded-md hover:bg-gray-700 hover:text-white" x-bind:class="{ 'text-gray-300': !atTop }">Collection</a>
 
             <a href="/product-all" class="px-3 py-2 text-sm font-medium  rounded-md hover:bg-gray-700 hover:text-white" x-bind:class="{ 'text-gray-300': !atTop }">Product</a>
 
@@ -59,7 +59,7 @@
                 <span class="text-red-700 font-extrabold  ">
                   @auth
                       <?php 
-                        $count = DB::table('carts')->where('user_id' , Auth::user()->id)->count();
+                        $count = \App\Models\Cart::where('user_id' , Auth::user()->id)->count();
                       ?>
                       {{$count}}
                   @endauth
@@ -74,7 +74,7 @@
                   <div >
                     <button 
                       @click="isOpenDropDown = !isOpenDropDown"
-                      type="button" class="flex text-sm bg-pink-700 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                      type="button" class="flex text-sm bg-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                       <span class="sr-only">Open user menu</span>
                       <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />

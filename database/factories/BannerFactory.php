@@ -13,11 +13,12 @@ class BannerFactory extends Factory
      */
     public function definition()
     {
+
+        // $images = ["banner/b_1.jpg", "banner/b_1.jpg", "banner/b_1.jpg", "banner/banner"];
         return [
             'name'             => $this->faker->word(),
             'active'            =>true,
-            "image"          => "banner/XuaeyfMmeBYoB8ty0adfSNMqq3E8iDSbTJYj96a4.jpg",
-            "product_id" => rand(1, 10),
+            "image"          => "banner/b_1.jpg",
         ];
     }
 }

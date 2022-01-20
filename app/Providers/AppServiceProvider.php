@@ -5,7 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Cashier\Cashier;
-
+use Illuminate\Support\Facades\View;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -28,5 +28,9 @@ class AppServiceProvider extends ServiceProvider
         Blade::directive('hello', function ($expression) {
             return "&lt;?php echo 'Hello '.{$expression}; ?&gt;";
         });
+
+        View::share('key', 'value'); 
+
+        
     }
 }

@@ -17,7 +17,7 @@ class ProductFactory extends Factory
             'name'             => $this->faker->word(),
             'details'           => $this->faker->sentence(),
             'price'             =>$this->faker->randomNumber(6),
-            "image"          => "products/W3JQQ1Hf2N94CirtUJg0n4fbd1L8ihVh9EXvlkMa.jpg",
+            "image"          => "public/products/U1ljNLfaV2IFBQaafXfmILXl747xpMdtPqBBmK74.jpg",
             "category_id" => rand(1, 8),
         ];
     }

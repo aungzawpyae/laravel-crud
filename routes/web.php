@@ -31,10 +31,12 @@ Route::get('/admintest', function () {
 //   UI Route List
 
 Route::get('/', [UiController::class, 'home']);
-Route::get('/product-collection', [UiController::class, 'productCollection']);
+Route::get('/collection', [UiController::class, 'collection']);
 Route::get('/collection/details/{id}', [UiController::class, 'collectionShow']);
 Route::get('/product-all', [UiController::class, 'productall']);
 Route::get('product/details/{id}', [UiController::class, 'productDetails']);
+
+// Store Cart 
 Route::post('product/details/{id}', [UiController::class, 'store']);
 Route::get('/announcement-all', [UiController::class, 'announcementAll']);
 
@@ -42,18 +44,20 @@ Route::get('/announcement-all', [UiController::class, 'announcementAll']);
 
 
 Route::get('cart', [CartController::class, 'cartList'])->name('cart.list');
-Route::post('cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
-Route::post('/cart/update/{id}', [CartController::class, 'update']);
+Route::put('cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
 Route::delete('/cart/delete/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
-Route::post('/cart', [CartController::class, 'store'])->name('order.store');
+// Route::post('/cart', [CartController::class, 'store'])->name('order.store');
 
-// Order 
-// Route::get('/success', [OrderController::class, 'orderSuccess']);
+
 // Route::get('success', function () {
 //     return view('ui.carts.order-success');
 // });
 Route::get('/success', [MailController::class, 'send']);
 // Route::get('/order', [OrderController::class, 'index']);
+
+Route::get('/order/create', [OrderController::class,'create'])->name('order.create');
+Route::post('/order/create', [OrderController::class,'store'])->name('order.store');
+
 
 
 
@@ -82,19 +86,18 @@ Route::group(['middleware' => 'checkRole:admin', 'prefix' => 'dev'], function() 
     Route::resource('/announcement', AnnouncementController::class);    
     // Route::resource('/category', CategoryController::class);
     Route::get('/user-list', [UserController::class, 'index']);
+
+    // Order 
+    Route::get('/order', [OrderController::class,'index'])->name('order.index');
+    Route::get('/order/{id}/edit', [OrderController::class, 'edit'])->name('order.edit');
+    Route::put('/order/{id}/edit', [OrderController::class, 'update'])->name('order.update');
 });
 
 
 
 
 Route::get('cart', [CartController::class, 'cartList'])->name('cart.list');
-// Route::post('cart', [\App\Http\Controllers\CartController::class, 'addToCart'])->name('cart.store');
-// Route::post('update-cart', [CartController::class, 'updateCart'])->name('cart.update');
-// Route::post('remove', [CartController::class, 'removeCart'])->name('cart.remove');
-// Route::post('clear', [CartController::class, 'clearAllCart'])->name('cart.clear');
 
-
-// Route::get('/ajax/out-of-stock/{type}', [AjaxRequestController::class, 'ajaxRequest']);
 
 Route::get('/ajax/collection/details/{id}', [AjaxRequestController::class, 'hightToLow']);
 

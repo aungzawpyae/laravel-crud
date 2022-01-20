@@ -64,6 +64,7 @@
                      .then(data => {
                             let productsHtml = document.querySelector('#products');
                             let products = data.data;
+                            
                             let html = "";
                             products.forEach(product => {
                               console.log(product);
@@ -73,7 +74,7 @@
                             if(product) {
                                 html += `
                                     <div class="w-full p-4 sm:w-1/2 md:w-1/4 xl:w-1/4">
-                                      <a href="" class="block overflow-hidden bg-white rounded-lg shadow-md hover:shadow-xl hover:border h-80">
+                                      <a href="${product.id}" class="block overflow-hidden bg-white rounded-lg shadow-md hover:shadow-xl hover:border h-80">
                                         <div class="relative pb-48 overflow-hidden">
                                         <img class="absolute inset-0 object-cover w-full h-full transition duration-700 ease-in-out hover:scale-125" src=" ${product.image }"" >
                                         </div>
@@ -83,11 +84,11 @@
                                     
                                         </div>
                                         <h2 class="mt-2 mb-2 font-bold">
-                                            ${product.name}
+                                            
                                         </h2>
                                     
                                         <div class="flex items-center mt-3">
-                                            <span class="font-bold text-pink-600 text-x">Ks   ${product.price}</span>
+                                            <span class="font-bold text-pink-600 text-x">Ks   ${product.id}</span>
                                         </div>
                                         </div>
                                
@@ -106,22 +107,15 @@
                let decrease = parseInt(document.querySelector(`#quantity_${id}`).value) - 1;
                     document.getElementById(`quantity_${id}`).value= decrease;
 
-               console.log(decrease.value);
 
              }
              function increase(id){
-                  let sum = document.querySelector('#price').value;
+               
                   let increase = parseInt(document.querySelector(`#quantity_${id}`).value) + 1;
                     document.getElementById(`quantity_${id}`).value= increase;
-                    let total = sum * increase;
-                    console.log(total);
-
-            }
-            function total(){
-
+                   
             }
             
-           
   /**
    * 
    * Announcement 

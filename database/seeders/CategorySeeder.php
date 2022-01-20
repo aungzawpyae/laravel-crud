@@ -13,6 +13,31 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        Category::factory(8)->create();
+        Category::create([
+            'name'  =>'Apple',
+            'image'=>'category/apple.jpg',
+
+        ]);
+        Category::create([
+            'name'  =>'Samsung',
+            'image'=>'category/samsung.jpg',
+
+        ]);
+        Category::create([
+            'name'  =>'Huawei',
+            'image'=>'category/huawei.jpg',
+
+        ]);
+        Category::create([
+            'name'  =>'Oppo',
+            'image'=>'category/oppo.jpg',
+
+        ]);
+        Category::create([
+            'name'  =>'Vivo',
+            'image'=>'category/vivo.jpg',
+
+        ]);
+       
     }
 }

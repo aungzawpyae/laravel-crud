@@ -13,8 +13,25 @@ class ProductCollectionFactory extends Factory
      */
     public function definition()
     {
-        return [
-            //
-        ];
+
+        $banners = [
+            'banner/b_1.jpg',
+            'banner/b_2.jpg',
+            'banner/b_3.jpg',
+            'banner/b_4.jpg',
+           ];
+
+           foreach ($banners as $key => $banner) {
+                return [
+                    'name' => 'Collection',
+                    'name'  => 'Collection'.$key,
+                 ];
+            // Banner::create([
+            //     'name'  => 'Banner'.$key,
+            //     'image'  => $banner,
+            //     'active'    => true,
+            //    ]);
+           }
+        
     }
 }

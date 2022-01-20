@@ -12,19 +12,19 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-        {{-- <link href="{{ asset('css/custom.css') }}" rel="stylesheet" type="text/css" > --}}
-        {{-- <link rel="stylesheet" href="{{}}"> --}}
+        <link href="{{ asset('css/custom.css') }}" rel="stylesheet" type="text/css" >
+        
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
         
 
         <link
-  rel="stylesheet"
-  href="https://unpkg.com/swiper@7/swiper-bundle.min.css"
-/>
+        rel="stylesheet"
+        href="https://unpkg.com/swiper@7/swiper-bundle.min.css"
+        />
 
-<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+      <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 
 
     </head>
@@ -34,6 +34,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
           </svg>
         </button>
+
 
 
         <div class="font-sans antialiased text-gray-900 ">
@@ -53,24 +54,24 @@
  
         <script>
              // ScrollTop Function
- var mybutton = document.getElementById("myBtn");
+            var mybutton = document.getElementById("myBtn");
 
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {scrollFunction()};
 
-function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    mybutton.style.display = "block";
-  } else {
-    mybutton.style.display = "none";
-  }
-}
+            function scrollFunction() {
+              if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+              } else {
+                mybutton.style.display = "block";
+              }
+            }
 
-// When the user clicks on the button, scroll to the top of the document
-function topFunction() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-}
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+              document.body.scrollTop = 0;
+              document.documentElement.scrollTop = 0;
+            }
      
         </script>
     </body>
