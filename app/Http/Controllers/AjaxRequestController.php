@@ -17,17 +17,17 @@ class AjaxRequestController extends Controller
         return $type;
     }
     public function hightToLow(Request $request, $id)
-        {
-            $collection = ProductCollection::find($id);
+    {
+        $collection = ProductCollection::find($id);
 
-            if ("price_hight_to_low" == $request->type) {
+        if ("price_hight_to_low" == $request->type) {
                    
                     return response()->json([
                         'data' =>  ProductionCollectionResource::collection($collection->products()->orderBy('price', 'asc')->get()),
                     ]);
-            } elseif ("price_low_to_hight" == $request->type ) {
+        } elseif ("price_low_to_hight" == $request->type ) {
                 
-                return response()->json([
+        return response()->json([
                     // 'data' =>  $collection->products()->orderBy('price', 'desc')->get(),
                     'data' =>  ProductionCollectionResource::collection($collection->products()->orderBy('price', 'desc')->get()),
                 ]);

@@ -34,7 +34,7 @@ class FontendController extends Controller
      }
 
     public function uicollection()
-      {litakemit
+      {
         $product = Product::all();
         
        $collection = ProductCollection::orderBy('id' ,'desc') ->get();
