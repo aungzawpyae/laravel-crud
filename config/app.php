@@ -238,7 +238,6 @@ return [
         'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
 
         'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
-
     ],
 
 ];

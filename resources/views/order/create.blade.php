@@ -5,6 +5,21 @@
                 <div class="flex flex-row pt-6 pb-5 text-lg">
                     <h5>Customer Information</h5>
                 </div> 
+
+                @if ($errors->any())
+              
+                    @foreach ($errors->all() as $error)
+                            <div class="flex flex-col my-3">
+                            <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-green-800" role="alert">
+                            <span class="font-medium">
+                                {{$error}}
+                            </span> 
+                        </div>
+                        </div>
+                    @endforeach
+                 
+                 @endif
+                 
                         <form action="{{route('order.store')}}" method="POST" enctype="multipart/form-data">
                               @csrf
                               
@@ -30,6 +45,7 @@
                                     name="phone" 
                                     class="w-full h-10 px-2 mt-2 text-sm border rounded focus:outline-none focus:border-green-200" 
                                     placeholder="Phone Number*"
+                                    required
                                 >
                                 <label for="" class="text-gray-600">Address</label>
                                 <input 
@@ -37,6 +53,7 @@
                                     name="address" 
                                     class="w-full h-10 px-2 mt-2 text-sm border rounded focus:outline-none focus:border-green-200" 
                                     placeholder="Address"
+                                    required
                                 >
                             </div>  
                             <div class="">
@@ -50,7 +67,13 @@
                                  
                                 @endforeach
                             </div> 
-                            <br>
+                          
+                                <input 
+                                    type="hidden" 
+                                    name="code"                  
+                                    class="w-full h-10 px-2 mt-2 text-sm border rounded focus:outline-none focus:border-green-200" placeholder="Address"
+                                >
+                          
                            
                             <div class="flex items-center justify-between pt-2"> 
                                 <a href="/" class="w-24 h-12 text-xs font-medium text-blue-500">Return to cart</a> 

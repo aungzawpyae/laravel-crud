@@ -28,10 +28,10 @@
                 </div>
                 <div class="flex flex-col">
                     <span class="font-bold text-gray-700 uppercase mt-4 md:mt-0 mb-2">Find In Fast</span>
-                    <span class="my-1"><a href="#" class=" text-md hover:text-pink-600 hover:border-b-2 border-pink-800">Home</a></span>
-                    <span class="my-1"><a href="#" class=" text-md hover:text-pink-600 hover:border-b-2 border-pink-800">Collection</a></span>
-                    <span class="my-1"><a href="#" class=" text-md hover:text-pink-600 hover:border-b-2 border-pink-800">Cateogry</a></span>
-                    <span class="my-1"><a href="#" class=" text-md hover:text-pink-600 hover:border-b-2 border-pink-800">About</a></span>
+                    <span class="my-1"><a href="#" class=" text-md hover:text-pink-600 hover:border-b-2 border-pink-800">{{ __('main.home') }}</a></span>
+                    <span class="my-1"><a href="#" class=" text-md hover:text-pink-600 hover:border-b-2 border-pink-800">{{ __('main.collection') }}</a></span>
+                    <span class="my-1"><a href="#" class=" text-md hover:text-pink-600 hover:border-b-2 border-pink-800">{{ __('main.contact') }}</a></span>
+                    <span class="my-1"><a href="#" class=" text-md hover:text-pink-600 hover:border-b-2 border-pink-800">{{ __('main.about') }}</a></span>
                 </div>
                 <div class="flex flex-col">
                     <span class="font-bold text-gray-700 uppercase mt-4 md:mt-0 mb-2">Help & Information</span>

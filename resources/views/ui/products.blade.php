@@ -3,7 +3,7 @@
     <div class="w-full h-48 bg-fixed"
       style="background-image: url(https://cdn.pixabay.com/photo/2017/03/13/17/26/ecommerce-2140604_960_720.jpg)"
          >
-         <div class="w-full h-full text-white bg-black opacity-50 mt-20">
+         <div class="w-full h-full mt-20 text-white bg-black opacity-50">
             <div class="max-w-3xl mx-auto text-center ">
               <h1 class="pt-10 mb-3 text-5xl font-bold " >Product All</h1>
               <div class="flex justify-center ">
@@ -26,11 +26,11 @@
     </div>
   </div>
 
-  <div class="max-w-7xl mx-auto">
+  <div class="mx-auto max-w-7xl">
     <div class="flex flex-wrap ">
       @foreach ($products  as $product)
       <div class="w-full p-4 sm:w-1/2 md:w-1/2 xl:w-1/4">
-          <a href="{{url("/product/details/{$product->id}")}}" class="block overflow-hidden bg-white rounded-lg shadow-md h-80 hover:shadow-xl hover:border">
+          <a href="{{route("product.detail", $product)}}" class="block overflow-hidden bg-white rounded-lg shadow-md h-80 hover:shadow-xl hover:border">
               <div class="relative z-0 overflow-hidden">
                   <img class="inset-0 object-contain w-full transition duration-700 ease-in-out absoslute h-44 hover:scale-110" src="{{ Storage::url($product->image) }}" alt="">
               </div>
@@ -44,10 +44,10 @@
               </div>
               <h2 class="mt-2 mb-2 font-bold">
                   {{ $product->name}}
-              </h2>
-          
+            </h2>
+            {{-- @dd(numberTranslate($product->price_en)) --}}
               <div class="flex items-center mt-3">
-                  <span class="font-bold text-pink-600 text-x">Ks  {{ $product->price }}</span>
+                  <span class="font-bold text-pink-600 text-x">Ks  {{ numberTranslate($product->price)}}</span>
               </div>
               </div>
               
@@ -64,4 +64,4 @@
 </div>
 {{ $products->links() }}
   </div>
-</x-guest-layout>
+</x-guest-layout> 

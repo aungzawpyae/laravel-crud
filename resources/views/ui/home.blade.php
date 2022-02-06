@@ -34,11 +34,11 @@
     @foreach ($collections as $key => $collection)
         <div class="container mx-auto computer">
             <hr class="">
-            <div class="flex border-y p-3 justify-between mx-3 my-8">
+            <div class="flex justify-between p-3 mx-3 my-8 border-y">
                 <h2 class=" xl:text-3xl">
                     {{$collection['name']}}
                 </h2>
-                <a href="{{url("/collection/details/{$collection['id']}")}}">
+                <a href="{{url("/collection/{$collection->slug}/details")}}">
                     <h4 class="flex collection-view">
 
                         <div class="">
@@ -56,9 +56,12 @@
                 </a>
             </div>
             <div class="flex flex-wrap ">
+                
                 @foreach ($collection->productLimits as $key => $product)
-                    <div class=" p-4 w-1/4">
-                        <a href="{{url("/product/details/{$product->id}")}}" class="block overflow-hidden bg-white rounded-lg shadow-md h-80 hover:shadow-xl hover:border">
+                
+             
+                    <div class="w-1/4 p-4 ">
+                        <a href="{{url("/product/{$product->slug}/details/")}}" class="block overflow-hidden bg-white rounded-lg shadow-md h-80 hover:shadow-xl hover:border">
                             <div class="relative z-0 overflow-hidden">
                                     <img class="inset-0 object-contain w-full transition duration-700 ease-in-out absoslute h-44 hover:scale-110" src="{{ Storage::url($product->image) }}" alt="">
                             </div>
@@ -71,7 +74,7 @@
                                 </h2>
 
                                 <div class="flex items-center mt-3">
-                                    <span class="font-bold text-pink-600 text-x">Ks  {{ $product['price'] }}</span>
+                                    <span class="font-bold text-pink-600 text-x">Ks  {{ numberTranslate($product->price)}}</span>
                                 </div>
                             </div>
                         </a>
@@ -81,7 +84,7 @@
         </div>
     @endforeach
     <!-- End Product of Collection--->
-
+                   
 
 
     <!-- Announcement Slider -->
@@ -107,7 +110,7 @@
                                     
                                     <span class="hidden md:inline">
                                     
-                                    Big news! {{ $announcement->desc}}
+                                        Big news! {{ $announcement->desc}}
                                     </span>
                                 </p>
                                 </div>

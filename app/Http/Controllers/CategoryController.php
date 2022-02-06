@@ -83,6 +83,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
+        $id = decoder('hashing', $id);
         $category = Category::find($id);
         // return "Edit Cat";
         return view('category.edit')->with('category', $category);

@@ -25,7 +25,7 @@ class ProductCollectionSeeder extends Seeder
             ProductCollection::create([
                 'name'  => $collection,
                 'active'=>true,
-                'product_id' => json_encode([rand(1, 100), rand(1, 100)]),
+                'slug'  =>$collections,
                ]);
            }
 

@@ -13,7 +13,7 @@ class ProductCollection extends Model
     protected $table='product_collections';
 
     protected $fillable = [
-        'name','active','product_id'
+        'name','active','slug'
     ];
     protected $casts = [
         'active' => 'boolean',

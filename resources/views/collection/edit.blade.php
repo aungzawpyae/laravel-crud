@@ -43,6 +43,7 @@
             >
             <form action="{{ route('collection.update', $collection->id) }}" method="POST" enctype="multipart/form-data">
               @csrf
+              @method('PUT')
               <label class="block text-sm">
                 <span class="text-gray-700 dark:text-gray-400">Name</span>
                 <input

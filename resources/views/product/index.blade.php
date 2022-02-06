@@ -18,10 +18,10 @@
 
         <div class="flex justify-end">
             <h2
-                class=" p-3 my-8  text-sm font-semibold  text-purple-100 bg-purple-600  rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple"
+                class="p-3 my-8 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple"
                 >
                 <a href="/product/create" class="flex">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                     </svg>
                         Add 
@@ -59,7 +59,7 @@
                 <th class="px-4 py-3">Price</th>
                
                 <th class="px-4 py-3">Qty</th>
-                <th class="px-4 py-3">Stock </th>
+                {{-- <th class="px-4 py-3">Stock </th> --}}
                 <th class="px-4 py-3">Actions</th>
               </tr>
             </thead>
@@ -106,23 +106,26 @@
                     </div>
                     <div>
                       <p class="text-xs">
-                        totals = 89 items
+                        totals = {{$product->quantity}} items
                       </p>
                       <p class="text-xs text-gray-600 dark:text-gray-400">
-                         left = 50 items  
+                         left = 
+                         {{$product->remaning_item}} 
+                         
+                         items  
                       </p>
                     </div>
                   </div>
            
                 </td>
-                <td class="px-4 py-3 text-sm">
+                {{-- <td class="px-4 py-3 text-sm">
                   <span
                   class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
                 >
                   Out of Stock
 
                 </span>
-                </td>
+                </td> --}}
                 <td class="px-4 py-3">
                   <div class="flex items-center space-x-4 text-sm">
                     <a
@@ -130,7 +133,7 @@
                     aria-label="Show"
                     href="{{ route('product.show', $product->id) }}"
                   >
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
                     <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
                   </svg>
@@ -285,7 +288,7 @@
           </span> --}}
         </div>
 
-        {{ $products->links('pagination::tailwind') }}
+        {{ $products->links() }}
       </div>
     </div>
   </main>

@@ -46,13 +46,14 @@ class ProductCollectionController extends Controller
         $request->validate([
             'name' =>'required',
             'product_id'=>'required',
+            
 
         ]);
-        $product_id = json_encode($request->input('product_id'));
+        // $product_id = json_encode($request->input('product_id'));
 
         $data = [
             'name' =>$request->input('name'),
-            'product_id' => $product_id,
+            'slug' =>$request->input('name'),
             'active'=>true,
         ];
         
@@ -105,13 +106,13 @@ class ProductCollectionController extends Controller
             $collection = ProductCollection::find($id);
             $request->validate([
                 'name' =>'nullable|required',
-                'product_id'=> 'nullable|required',
+                'slug'=> 'nullable|required',
             ]);
-            $product_id = json_encode($request->input('product_id'));
+
 
             $data = [
                 'name'=>$request->name,
-                'product_id'=>$product_id,
+                'slug'=>$request->name,
                 'active'=>true,
                 
             ];

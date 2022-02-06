@@ -22,6 +22,8 @@ class UiController extends Controller
          *
          **/
         {
+            $products = Product::latest()->get();
+
             $banners = Banner::where('active', 1)->get();
 
             $announcements= Announcement::all();
@@ -44,26 +46,33 @@ class UiController extends Controller
                 
             $collection = ProductCollection::orderBy('id','desc')->get();
     
-            return view('ui.pc')->with('collections', $collection)
-                                                ->with('products', $product);      
+            return view('ui.pc')
+                                ->with('collections', $collection)
+                                ->with('products', $product);      
                                                 
             
         }
 
-    public function collectionShow($id)
+    public function collectionShow($slug)
         /**
          * 
          *  Collection Deatils with product
          *
          **/
         {
-            $data = Product::with('productCollection')->find($id);
+            // $data = Product::with('productCollection')->find($slug);
 
-            $data = ProductCollection::with('products')->find($id);
+            $data = ProductCollection::with('products')->firstWhere('slug', $slug);
             // dd($data);
-            $collection =  new CollectionResource($data);
-            // dd($collection);
-            return view('ui.collection-details')->with('collections', $collection);      
+            $collections =  new CollectionResource($data);
+        
+            $collection = ProductCollection::latest()->get();
+            
+            return view('ui.collection-details', 
+            [ 
+                'collection' => $collection,
+                'collections' => $collections
+            ]);      
         }
 
     public function productall()
@@ -73,18 +82,19 @@ class UiController extends Controller
             return view('ui.products',)->with('products', $product);
         }
 
-    public function productDetails($id)
+    public function productDetails(Product $product)
         {
-            $products = Product::find($id);
-            return view('ui.product-details',compact('products'));
+            return view('ui.product-details',compact('product'));
         }
         /**
         * 
-        *  Home Page Show Data
+        *  Cart Store
         *
         **/
     public function store(Request $request)
-        {  
+    {  
+
+        // dd($request);
             $oldCart = Cart::where('user_id', $request->user_id)->where('product_id', $request->product_id)->latest()->first();
 
                 if ($oldCart) {
@@ -100,11 +110,12 @@ class UiController extends Controller
                         'quantity'=>$request->quantity,
                         'price'     =>$request->price,
                         'slug'      =>$total,
+                        
                     ]);
                 }
                 
             return redirect('/cart')->with('success','Added cart successfully.');
-        }
+    }
         public function about()
         {
             return view('ui.about');
@@ -122,6 +133,25 @@ class UiController extends Controller
 
         }
 
+// Product Search
+    public function search(Request $request){
+      
+        // Get the search value from the request
+        // $search = $request->input('search');
+        
+        // Search in the title and body columns from the posts table
+        // $products = Product::latest()
+        //     ->where('name', 'LIKE', "%{$search}%")
+        //     ->orWhere('details', 'LIKE', "%{$search}%")
+        //     ->paginate(15);
+        // dd($products);
+        // Return the search view with the resluts compacted
 
-     
+        //  Search Array with Filter Methods 
+        $products = Product::latest()->filter(request(['search', 'category',]))->paginate();
+        $currentCategory = Category::firstWhere('id', request('category'));
+       
+        // dd($currentCategory);
+        return view('ui.search', compact('products','currentCategory'));
+    }
 }

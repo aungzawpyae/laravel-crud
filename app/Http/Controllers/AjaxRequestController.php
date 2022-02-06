@@ -19,6 +19,7 @@ class AjaxRequestController extends Controller
     public function hightToLow(Request $request, $id)
     {
         $collection = ProductCollection::find($id);
+        // dd($collection);
 
         if ("price_hight_to_low" == $request->type) {
                    

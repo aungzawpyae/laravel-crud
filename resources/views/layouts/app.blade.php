@@ -8,7 +8,69 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="{{ asset('assets/css/tailwind.output.css') }}" />
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+
+    <style>
+      ol.progtrckr {
+      margin: 0;
+      padding: 0;
+      list-style-type none;
+      }
+      
+      ol.progtrckr li {
+      display: inline-block;
+      text-align: center;
+      line-height: 3.5em;
+      }
+      
+      ol.progtrckr[data-progtrckr-steps="2"] li { width: 49%; }
+      ol.progtrckr[data-progtrckr-steps="3"] li { width: 33%; }
+      ol.progtrckr[data-progtrckr-steps="4"] li { width: 24%; }
+      ol.progtrckr[data-progtrckr-steps="5"] li { width: 19%; }
+      ol.progtrckr[data-progtrckr-steps="6"] li { width: 16%; }
+      ol.progtrckr[data-progtrckr-steps="7"] li { width: 14%; }
+      ol.progtrckr[data-progtrckr-steps="8"] li { width: 12%; }
+      ol.progtrckr[data-progtrckr-steps="9"] li { width: 11%; }
+      
+      ol.progtrckr li.progtrckr-done {
+      color: black;
+      border-bottom: 4px solid yellowgreen;
+      }
+      ol.progtrckr li.progtrckr-todo {
+      color: silver;
+      border-bottom: 4px solid silver;
+      }
+      
+      ol.progtrckr li:after {
+      content: "\00a0\00a0";
+      }
+      ol.progtrckr li:before {
+      position: relative;
+      bottom: -2.5em;
+      float: left;
+      left: 50%;
+      line-height: 1em;
+      }
+      ol.progtrckr li.progtrckr-done:before {
+      content: "\2713";
+      color: white;
+      background-color: yellowgreen;
+      height: 2.2em;
+      width: 2.2em;
+      line-height: 2.2em;
+      border: none;
+      border-radius: 2.2em;
+      }
+      ol.progtrckr li.progtrckr-todo:before {
+      content: "\039F";
+      color: silver;
+      background-color: white;
+      font-size: 2.2em;
+      bottom: -1.2em;
+      }
+    </style>
+
+    {{-- <link rel="stylesheet" href="{{ asset('assets/css/tailwind.output.css') }}" /> --}}
     <script
       src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
       defer
@@ -32,7 +94,7 @@
     >
       <!-- Desktop sidebar -->
       <aside
-        class="z-20 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0"
+        class="z-20 flex-shrink-0 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block"
        >
         <div class="py-4 text-gray-500 dark:text-gray-400">
           <a
@@ -50,7 +112,7 @@
               ></span>
               <a
                 class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
-                href="index.html"
+                href="/dev/dashboard"
               >
                 <svg
                   class="w-5 h-5"
@@ -76,6 +138,7 @@
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                 href="{{ route('category.index') }}"
+                
                >
                 <svg
                   class="w-5 h-5"
@@ -189,12 +252,23 @@
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                 href="{{ route('order.index' ) }}"
               >
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd" />
               </svg>
                 <span class="ml-4">Order</span>
               </a>
             </li>
+            <li class="relative px-6 py-3">
+                          <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                            href="{{ route('order.index' ) }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+                              <path fill-rule="evenodd"
+                                d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z"
+                                clip-rule="evenodd" />
+                            </svg>
+                            <span class="ml-4">Order Log</span>
+                          </a>
+                        </li>
            
             <li class="relative px-6 py-3">
               <button
@@ -232,58 +306,10 @@
                   ></path>
                 </svg>
               </button>
-              <template x-if="isPagesMenuOpen">
-                <ul
-                  x-transition:enter="transition-all ease-in-out duration-300"
-                  x-transition:enter-start="opacity-25 max-h-0"
-                  x-transition:enter-end="opacity-100 max-h-xl"
-                  x-transition:leave="transition-all ease-in-out duration-300"
-                  x-transition:leave-start="opacity-100 max-h-xl"
-                  x-transition:leave-end="opacity-0 max-h-0"
-                  class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
-                  aria-label="submenu"
-                >
-                  <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  >
-                    <a class="w-full" href="pages/login.html">Login</a>
-                  </li>
-                  <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  >
-                    <a class="w-full" href="pages/create-account.html">
-                      Create account
-                    </a>
-                  </li>
-                  <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  >
-                    <a class="w-full" href="pages/forgot-password.html">
-                      Forgot password
-                    </a>
-                  </li>
-                  <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  >
-                    <a class="w-full" href="pages/404.html">404</a>
-                  </li>
-                  <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  >
-                    <a class="w-full" href="pages/blank.html">Blank</a>
-                  </li>
-                </ul>
-              </template>
+             
             </li>
           </ul>
-          <div class="px-6 my-6">
-            <button
-              class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-            >
-              Create account
-              <span class="ml-2" aria-hidden="true">+</span>
-            </button>
-          </div>
+
         </div>
       </aside>
       <!-- Mobile sidebar -->

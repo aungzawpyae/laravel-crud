@@ -54,7 +54,7 @@
               <tr
                 class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
               >
-                <th class="px-4 py-3">Index</th>
+                <th class="px-4 py-3">Order Code</th>
                 <th class="px-4 py-3">Name</th>
                 <th class="px-4 py-3">Status</th>
                
@@ -68,8 +68,9 @@
               <tr class="text-gray-700 dark:text-gray-400">
                 
                 <td class="px-4 py-3 text-sm">
-                  {{ $order->id}}
+                  {{ $order->code}}
                 </td>
+                
                 <td class="px-4 py-3 text-sm">
                   {{ $order->user->name}}
                 </td>
@@ -77,18 +78,38 @@
                 
                 <td class="px-4 py-3 text-sm">
                  
-                  @if(!$order->status == 1)
+                  @if($order->status == 0)
                     <span
-                    class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full dark:text-white dark:bg-orange-600"
+                    class="px-2 py-1 font-semibold leading-tight text-red-400 bg-orange-100 rounded-full dark:text-white dark:bg-orange-600"
                     
                     >
                       Pending
                     </span>    
-                    @else
+                    @elseif ($order->status == 1)
                     <span
-                    class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
+                    class="px-2 py-1 font-semibold leading-tight text-red-500 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
                     >
-                      Success
+                      Approved
+                    </span>
+                    @elseif ($order->status == 2)
+                    <span
+                      class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+                      Ready-to-deliver
+                    </span>
+                    @elseif ($order->status == 3)
+                    <span
+                      class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+                      Delivering
+                    </span>
+                    @elseif ($order->status == 4)
+                    <span
+                      class="px-2 py-1 font-semibold leading-tight text-orange-500 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+                      Canceled
+                    </span>
+                    @elseif ($order->status == 5)
+                    <span
+                      class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+                      Delivered
                     </span>
                   @endif
 
@@ -99,7 +120,7 @@
                     <a
                     class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-green-600 rounded-lg hover:bg-green-800 dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                     aria-label="Show"
-                    href=""
+                    href="{{ route('order.show',$order->id)}}""
                   >
                   <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
@@ -122,14 +143,14 @@
                         ></path>
                       </svg>
                     </a>
-                    <form action="" method="post">
+                    <form action="{{route('order.destroy',$order->id)}}" method="post">
                       @csrf
                       @method('DELETE')   
                       <button
                       class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-red-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                       aria-label="Delete"
                     >
-                   </form>
+                   
                   
                       <svg
                         class="w-5 h-5"
@@ -144,6 +165,8 @@
                         ></path>
                       </svg>
                     </button>
+
+                  </form>
                   </div>
                 </td>
               </tr>

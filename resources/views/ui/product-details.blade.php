@@ -6,18 +6,18 @@
            <div class="mx-auto max-w-4xl ">
             <div class="w-full grid grid-cols-1 gap-y-8 gap-x-6 items-start sm:grid-cols-12 lg:gap-x-8">
               <div class="aspect-w-2 aspect-h-3 rounded-lg bg-gray-100 overflow-hidden sm:col-span-4 lg:col-span-5">
-                <img src="{{ Storage::url($products->image) }}" alt="Two each of gray, white, and black shirts arranged on table." class="object-center object-cover">
+                <img src="{{ Storage::url($product->image) }}" alt="Two each of gray, white, and black shirts arranged on table." class="object-center object-cover">
               </div>
               <div class="sm:col-span-8 lg:col-span-7">
                 <h2 class="text-2xl font-extrabold text-gray-900 sm:pr-12">
-                  {{ $products->name}}
+                  {{ $product->name}}
                 </h2>
     
                 <section aria-labelledby="information-heading" class="mt-2">
                   <h3 id="information-heading" class="sr-only">Product information</h3>
     
                   <p class="text-2xl text-gray-900">
-                    Ks   {{$products->price}}
+                    Ks   {{ numberTranslate($product->price)}}
                   </p>
     
                   <!-- Reviews -->
@@ -56,8 +56,14 @@
                       </div>
                       <p class="sr-only">3.9 out of 5 stars</p>
                       <a href="#" class="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">117 reviews</a>
+
                     </div>
                   </div>
+
+                  <p class="mt-5">
+                    {{$product->details}}
+                  </p>
+
                 </section>
     
                 <section aria-labelledby="options-heading" class="mt-10">
@@ -70,8 +76,8 @@
                           @csrf
                           
                           <input type="hidden" name="user_id"  value="{{ Auth::user()->id }}">
-                          <input type="hidden" name="product_id"  value="{{ $products->id }}">
-                          <input type="hidden" name="price"  value="{{$products->price}}">
+                          <input type="hidden" name="product_id"  value="{{ $product->id }}">
+                          <input type="hidden" name="price"  value="{{($product->price)}}">
                           <input type="hidden" name="quantity"  value="1">
                         
                           <button type="submit"  class="mt-6 w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add to Cart</button>

@@ -4,10 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Order;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\Product\CreateRequest;
 use App\Http\Requests\Product\UpdateRequest;
+use App\Models\Banner;
+
 class ProductController extends Controller
 {
     /**
@@ -15,9 +20,10 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, Order $order)
     {
-        $products = Product::with(['category'])
+        
+        $products = Product::with(['category', 'orders'])
                         ->latest()
                         ->paginate(15);
         return view('product.index',compact('products'));
@@ -104,11 +110,12 @@ class ProductController extends Controller
          }
          
         $data = [
-            'name'=>$request->name,
-            'details'=>$request->details,
-            'price'=>$request->price,
+            'name'       =>$request->name,
+            'details'    =>$request->details,
+            'price'      =>$request->price,
             'category_id'=>$request->category_id,
-            'image'=>$product_img,
+            'image'      =>$product_img,
+            "slug"       =>Str::slug($name),
         
         ];
     
@@ -130,7 +137,9 @@ class ProductController extends Controller
     {  
         Storage::delete($product->image);
         $product->delete();
-        return redirect()->route('products.index')
+        return redirect()->route('product.index')
                         ->with('success','Product deleted successfully');
     }
+
+
 }

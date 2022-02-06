@@ -58,13 +58,13 @@
                                                                 <span x-show="!expanded" aria-hidden="true" class="ml-4">&plus;</span>
                                                             </button>
                                                         </h2>
-            
+                                                        
                                                         <div x-show="expanded" x-collapse>
-                                                            <a href="{{url("/collection/details/{$collection->id}")}}">
+                                                            <a href="{{route("collection.products", $collection)}}">
                                                                 <div class="px-6 pb-4 hover:text-pink-700">{{ $collection->products->count() }}
                                                                     items found
                                                                 </div>
-                                                        </a>
+                                                            </a>
                                                         </div>
                                                     </div>
             
@@ -103,7 +103,7 @@
                         <div class="flex flex-wrap my-5">
                             @foreach ($products  as $product)
                                     <div class="p-4 l sm:w-1/2 md:w-1/2 xl:w-1/4">
-                                        <a href="{{url("/product/details/{$product->id}")}}" class="block overflow-hidden bg-white rounded-lg shadow-md h-80 hover:shadow-xl hover:border">
+                                        <a href="{{url("/product/{$product->slug}/details")}}" class="block overflow-hidden bg-white rounded-lg shadow-md h-80 hover:shadow-xl hover:border">
                                             <div class="relative z-50 overflow-hidden">
                                                 <img class="inset-0 object-contain w-full transition duration-700 ease-in-out absoslute h-44 hover:scale-110" src="{{ Storage::url($product->image) }}" alt="">
                                             </div>
@@ -120,7 +120,7 @@
                                             </h2>
                                         
                                             <div class="flex items-center mt-3">
-                                                <span class="font-bold text-pink-600 text-x">Ks  {{ $product->price }}</span>
+                                                <span class="font-bold text-pink-600 text-x">Ks  {{ numberTranslate($product->price)}}</span>
                                             </div>
                                             </div>
                                 

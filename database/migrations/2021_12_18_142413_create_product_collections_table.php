@@ -15,8 +15,8 @@ class CreateProductCollectionsTable extends Migration
     {
         Schema::create('product_collections', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->jsonb('product_id');
+            $table->string('name')->uniqid();
+            $table->string('slug')->nullable();
             $table->boolean('active');
             $table->timestamps();
         });

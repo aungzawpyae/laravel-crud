@@ -56,8 +56,9 @@ class OrderController extends Controller
                 'price'     =>$temp->price,
                 'quantity'  =>$temp->quantity,
                 'amount'  => $temp->price * $temp->quantity,
+                'code'    =>random_int(100000, 999999),
                   
-                ];
+            ];
                         
             if (Order::create($data)) {
                 $temp->delete();
@@ -75,7 +76,8 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+        $order = Order::FindOrFail($id);
+        return view('order.show', compact('order'));
     }
 
     /**
@@ -118,6 +120,10 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        $order = Order::find($id);
+        $order->delete();
+        return redirect()->route('order.index')
+                        ->with('success','Order deleted successfully');
     }
 }

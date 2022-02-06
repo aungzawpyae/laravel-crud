@@ -39,14 +39,14 @@ class CartController extends Controller
 // Order Store
     public function store(Request $request){
 
-            $data = [
-                    'user_id'=>$request->user_id,
-                    'amount'=>$request->amount,
+        $data = [
+            'user_id'=>$request->user_id,
+            'amount'=>$request->amount,
                         
-                    ];
+            ];
                         
-                Order::create($data);
+            Order::create($data);
                         
-                    return redirect('/success');
+            return redirect('/success');
      }  
 }

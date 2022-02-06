@@ -3,7 +3,7 @@
     <div class="w-full h-48 bg-fixed"
       style="background-image: url(https://cdn.pixabay.com/photo/2017/03/13/17/26/ecommerce-2140604_960_720.jpg)"
          >
-         <div class="w-full h-full text-white bg-black opacity-50 mt-20">
+         <div class="w-full h-full mt-20 text-white bg-black opacity-50">
             <div class="max-w-3xl mx-auto text-center ">
               <h1 class="pt-10 mb-3 text-5xl font-bold " >{{ $collections->name }}</h1>
               <div class="flex justify-center ">
@@ -32,35 +32,54 @@
                   
                   <div class="grid grid-flow-col gap-4 grid-rows-">
                     <div class="justify-center">
-                        {{-- <div >
-                               <ul role="list" class="px-2 py-3 font-medium text-gray-900">
+                      
+                        <div >
+                            <ul role="list" class="px-2 py-3 font-medium text-gray-900">
                                     <li>
-                                      <a href="#" class="block ">
-                                          Filter
-                                      </a>
+                                    <a href="#" class="block text-2xl ">
+                                        Collection List
+                                    </a>
                                     </li>
-                               </ul>
+                            </ul>
                         
-                                <div class="px-4 py-6 border border-stone-300 ">
-                                    <h3 class="flow-root -mx-2 -my-3">
-                                        fdfd
-                                    </h3>
-                                    <div class="pt-6" id="filter-section-mobile-0">
-                                      <div class="space-y-6">
-                              
-                          
-                                        <div class="flex items-center" onclick="outOfStock()">
-                                          <input id="filter-mobile-color-1" name="color" value="out_of_stock" type="checkbox" class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
-                                          <label for="filter-mobile-color-1" class="flex-1 min-w-0 ml-3 text-gray-500">
-                                              Out of stock (4)
-                                          </label>
+                                <div class="px-4 py-6 border-gray-200 ">
+                                    @foreach ($collection as $item)
+                                        <div  class="space-y-4">
+                                            <div 
+                                                x-data="{ expanded : false }"
+                                                role="region" class="border border-gray-300">
+                                                <h2>
+                                                    <button
+                                                        @click="expanded = !expanded"
+                                                        :aria-expanded="expanded"
+                                                        class="flex items-center justify-between w-full px-6 py-3 text-xl font-bold"
+                                                    >
+                                                        <span class="text-sm text-red-700">{{ $item->name }}</span>
+                                                        <span x-show="expanded" aria-hidden="true" class="ml-4">&minus;</span>
+                                                        <span x-show="!expanded" aria-hidden="true" class="ml-4">&plus;</span>
+                                                    </button>
+                                                </h2>
+    
+                                                <div x-show="expanded" x-collapse>
+                                                    <a href="{{route("collection.products", $item)}}">
+                                                        <div class="px-6 pb-4 hover:text-pink-700">{{ $item->products->count() }}
+                                                            items found
+                                                        </div>
+                                                </a>
+                                                </div>
+                                            </div>
+    
+                                        
                                         </div>
-                          
+                                    @endforeach
+                                
+                                  <h3 class="flow-root -mx-2 -my-3">
                                   
-                                      </div>
-                                    </div>
+                                  </h3>
+                              
                                 </div>
-                        </div> --}}
+                        </div>
+                    
                     </div>
                   
                     </div>
@@ -77,7 +96,7 @@
                                       
                                     </h6>
                                 </div>
-                                <div class="col-1 ">
+                                <div class="col-1">
                                
                                         <span class="">Sort By : </span>
                                         <div class="relative inline text-gray-700">
@@ -101,10 +120,8 @@
                         </div>
     
                     </div>
-                    <div class="flex flex-wrap my-5 " id="products">
-                      <div class="" id="products">
-
-                      </div>
+                    <div class="flex flex-wrap my-5" id="products">
+                     
                         {{-- @foreach ($collections->products as $product)
                               <div class="w-full p-4 sm:w-1/2 md:w-1/2 xl:w-1/4">
                                   <a href="" class="block overflow-hidden bg-white rounded-lg shadow-md hover:shadow-xl hover:border h-80">

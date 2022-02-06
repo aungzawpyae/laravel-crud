@@ -1,0 +1,45 @@
+/* Fontend Navigation  */
+
+
+
+#nav  a {
+    position: relative;
+    color: #333;
+    font-size: 15px;
+    font-weight: 100;
+    padding: 5px 0;
+    text-decoration: none;
+}
+
+#nav a:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background: #7560b9;
+    border-radius: 12px;
+    transition: all 0.4s ease;
+}
+
+#nav a:hover:before {
+    width: 100%;
+}
+#navv a:before {
+    width: 100%;
+}
+
+.active,
+.btn:hover {
+    background-color: #666 !important;
+    color: white !important;
+}
+.btn {
+    border: none;
+    outline: none;
+    padding: 10px 16px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+    font-size: 18px;
+}
